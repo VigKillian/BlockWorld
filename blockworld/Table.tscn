@@ -4,24 +4,22 @@
 
 [sub_resource type="BoxMesh" id="BoxMesh_8jtdr"]
 
-[node name="Node3D" type="Node3D"]
-
-[node name="Table" type="MeshInstance3D" parent="."]
+[node name="Table" type="MeshInstance3D"]
 transform = Transform3D(3, 0, 0, 0, 0.3, 0, 0, 0, 3, 0, 1.82446, 0)
 mesh = SubResource("BoxMesh_inor0")
 
-[node name="Pied1" type="MeshInstance3D" parent="Table"]
+[node name="Pied1" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.106667, 0, 0, 0, 5.71, 0, 0, 0, 0.106667, -0.424901, -3.36032, -0.425506)
 mesh = SubResource("BoxMesh_8jtdr")
 
-[node name="Pied2" type="MeshInstance3D" parent="Table"]
+[node name="Pied2" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.106667, 0, 0, 0, 5.71, 0, 0, 0, 0.106667, -0.424901, -3.36032, 0.428505)
 mesh = SubResource("BoxMesh_8jtdr")
 
-[node name="Pied3" type="MeshInstance3D" parent="Table"]
+[node name="Pied3" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.106667, 0, 0, 0, 5.71, 0, 0, 0, 0.106667, 0.431854, -3.36032, -0.433074)
 mesh = SubResource("BoxMesh_8jtdr")
 
-[node name="Pied4" type="MeshInstance3D" parent="Table"]
+[node name="Pied4" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.106667, 0, 0, 0, 5.71, 0, 0, 0, 0.106667, 0.432, -3.36, 0.429)
 mesh = SubResource("BoxMesh_8jtdr")
