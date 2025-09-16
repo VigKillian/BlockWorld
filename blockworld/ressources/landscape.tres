@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://blix246u66hxa"]
+
+[ext_resource type="Texture2D" uid="uid://if5i8rys65ly" path="res://ressources/lava/Lava001_4K_Color.jpg" id="1_72ski"]
+
+[resource]
+albedo_texture = ExtResource("1_72ski")
+normal_enabled = true
+uv1_scale = Vector3(0.01, 0.01, 0.01)
+uv1_triplanar = true
+uv1_world_triplanar = true
