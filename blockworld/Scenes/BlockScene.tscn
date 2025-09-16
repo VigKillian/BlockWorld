@@ -12,12 +12,13 @@ albedo_color = Color(0.193996, 0.141105, 0.0616971, 1)
 albedo_texture = ExtResource("2_tg54b")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ldfo8"]
-albedo_color = Color(0.703301, 0.440176, 1, 1)
+albedo_color = Color(0.305517, 0.000989568, 0.513548, 1)
 albedo_texture = ExtResource("2_tg54b")
 
 [sub_resource type="BoxMesh" id="BoxMesh_kw6yq"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_534a0"]
+albedo_color = Color(0.377919, 0.377919, 0.377919, 1)
 albedo_texture = ExtResource("3_7v43y")
 
 [sub_resource type="BoxMesh" id="BoxMesh_cpnd3"]
@@ -61,6 +62,11 @@ mesh = ExtResource("5_lpxse")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0.00015708, 1.81899e-12, -9.23919e-06, 0.0588185, 0.998269, 0.000156808, -0.998269, 0.0588185, 0, 6.06877, 0)
+light_energy = 3.143
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.730391, 0.390696, 0.560256, 0.000128819, -0.820172, 0.572117, 0.68303, 0.417941, 0.598996, 5.56146, 3.20192, 1.21321)
+light_energy = 3.143
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 4, 4)

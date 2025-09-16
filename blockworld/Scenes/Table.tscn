@@ -1,25 +1,52 @@
-[gd_scene load_steps=3 format=3 uid="uid://i2epcvaymddu"]
+[gd_scene load_steps=9 format=3 uid="uid://i2epcvaymddu"]
+
+[ext_resource type="Texture2D" uid="uid://ddjv0jh8yy6i0" path="res://ressources/white_wood.jpg" id="1_ikupt"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5qi11"]
+albedo_color = Color(0.193996, 0.141105, 0.0616971, 1)
+albedo_texture = ExtResource("1_ikupt")
 
 [sub_resource type="BoxMesh" id="BoxMesh_inor0"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x5l52"]
+albedo_color = Color(0.193996, 0.141105, 0.0616971, 1)
+albedo_texture = ExtResource("1_ikupt")
+
 [sub_resource type="BoxMesh" id="BoxMesh_8jtdr"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r7wdr"]
+albedo_color = Color(0.193996, 0.141105, 0.0616971, 1)
+albedo_texture = ExtResource("1_ikupt")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cr70j"]
+albedo_color = Color(0.193996, 0.141105, 0.0616971, 1)
+albedo_texture = ExtResource("1_ikupt")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c4agb"]
+albedo_color = Color(0.193996, 0.141105, 0.0616971, 1)
+albedo_texture = ExtResource("1_ikupt")
 
 [node name="Table" type="MeshInstance3D"]
 transform = Transform3D(3, 0, 0, 0, 0.3, 0, 0, 0, 3, 0, 1.82446, 0)
+material_override = SubResource("StandardMaterial3D_5qi11")
 mesh = SubResource("BoxMesh_inor0")
 
 [node name="Pied1" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.106667, 0, 0, 0, 5.71, 0, 0, 0, 0.106667, -0.424901, -3.36032, -0.425506)
+material_override = SubResource("StandardMaterial3D_x5l52")
 mesh = SubResource("BoxMesh_8jtdr")
 
 [node name="Pied2" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.106667, 0, 0, 0, 5.71, 0, 0, 0, 0.106667, -0.424901, -3.36032, 0.428505)
+material_override = SubResource("StandardMaterial3D_r7wdr")
 mesh = SubResource("BoxMesh_8jtdr")
 
 [node name="Pied3" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.106667, 0, 0, 0, 5.71, 0, 0, 0, 0.106667, 0.431854, -3.36032, -0.433074)
+material_override = SubResource("StandardMaterial3D_cr70j")
 mesh = SubResource("BoxMesh_8jtdr")
 
 [node name="Pied4" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.106667, 0, 0, 0, 5.71, 0, 0, 0, 0.106667, 0.432, -3.36, 0.429)
+material_override = SubResource("StandardMaterial3D_c4agb")
 mesh = SubResource("BoxMesh_8jtdr")
