@@ -18,6 +18,7 @@ config/icon="res://ressources/icon.svg"
 [file_customization]
 
 folder_colors={
+"res://Classes/": "red",
 "res://Scenes/": "purple",
 "res://ressources/": "green"
 }
