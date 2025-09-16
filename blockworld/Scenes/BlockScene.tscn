@@ -1,9 +1,10 @@
-[gd_scene load_steps=20 format=3 uid="uid://ykary12vqwi"]
+[gd_scene load_steps=24 format=3 uid="uid://ykary12vqwi"]
 
 [ext_resource type="PackedScene" uid="uid://i2epcvaymddu" path="res://Scenes/Table.tscn" id="1_spaj1"]
 [ext_resource type="Texture2D" uid="uid://ddjv0jh8yy6i0" path="res://ressources/white_wood.jpg" id="2_tg54b"]
 [ext_resource type="Texture2D" uid="uid://cywcd8q4ksu5c" path="res://ressources/Texturelabs_Stone_127S.jpg" id="3_7v43y"]
 [ext_resource type="Texture2D" uid="uid://dd28ro1h3rfpv" path="res://ressources/tungsten.jpg" id="4_eq0un"]
+[ext_resource type="Material" uid="uid://blix246u66hxa" path="res://ressources/landscape.tres" id="7_xo8fn"]
 [ext_resource type="PackedScene" uid="uid://d2ym0sx32n6ih" path="res://ressources/donut_saucisse.glb" id="7_ygwfa"]
 [ext_resource type="PackedScene" uid="uid://cglfy1p0ssune" path="res://ressources/landscape1.glb" id="8_bpnj1"]
 [ext_resource type="PackedScene" uid="uid://bl7hkynpd8m7l" path="res://ressources/landscape2.glb" id="9_dvopj"]
@@ -49,6 +50,7 @@ sky_material = SubResource("ProceduralSkyMaterial_xo8fn")
 background_mode = 2
 sky = SubResource("Sky_bpnj1")
 tonemap_mode = 2
+glow_enabled = true
 fog_enabled = true
 fog_light_color = Color(0.20791382, 0.15194008, 0.050817728, 1)
 fog_sun_scatter = 0.09
@@ -57,6 +59,27 @@ fog_sky_affect = 0.147
 adjustment_enabled = true
 adjustment_brightness = 0.8
 adjustment_contrast = 1.2
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ygwfa"]
+emission_shape_scale = Vector3(100, 30, 100)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+initial_velocity_min = 100.0
+initial_velocity_max = 150.0
+gravity = Vector3(0, -5, 0)
+scale_min = 0.099999994
+scale_max = 0.5
+turbulence_enabled = true
+turbulence_noise_strength = 18.29
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xo8fn"]
+albedo_color = Color(0, 0, 0, 1)
+emission_enabled = true
+emission = Color(0.8894963, 0.54271317, 0.23446447, 1)
+emission_energy_multiplier = 7.26
+
+[sub_resource type="BoxMesh" id="BoxMesh_bpnj1"]
+material = SubResource("StandardMaterial3D_xo8fn")
 
 [node name="BlockScene" type="Node3D"]
 
@@ -101,26 +124,50 @@ size = Vector3(564.292, 1, 691.25366)
 [node name="landscape1" parent="environment" instance=ExtResource("8_bpnj1")]
 transform = Transform3D(552.0448, 0, -235.04584, 0, 600, 0, 235.04584, 0, 552.0448, -635.2873, -17.061806, -584.52655)
 
+[node name="Landscape" parent="environment/landscape1" index="0"]
+material_override = ExtResource("7_xo8fn")
+
 [node name="landscape2" parent="environment" instance=ExtResource("9_dvopj")]
 transform = Transform3D(600, 0, 0, 0, 600, 0, 0, 0, 600, 922.29913, -0.7753296, 579.03735)
+
+[node name="Landscape_001" parent="environment/landscape2" index="0"]
+material_override = ExtResource("7_xo8fn")
 
 [node name="landscape3" parent="environment" instance=ExtResource("8_bpnj1")]
 transform = Transform3D(153.67241, 0, 579.98694, 0, 600, 0, -579.98694, 0, 153.67241, 904.8414, -17.061806, -607.19275)
 
+[node name="Landscape" parent="environment/landscape3" index="0"]
+material_override = ExtResource("7_xo8fn")
+
 [node name="landscape4" parent="environment" instance=ExtResource("9_dvopj")]
 transform = Transform3D(477.44272, 0, -363.3847, 0, 600, 0, 363.3847, 0, 477.44272, -617.8295, -0.7753296, 601.7035)
+
+[node name="Landscape_001" parent="environment/landscape4" index="0"]
+material_override = ExtResource("7_xo8fn")
 
 [node name="landscape5" parent="environment" instance=ExtResource("8_bpnj1")]
 transform = Transform3D(-396.2055, 0, -450.57874, 0, 600, 0, 450.57874, 0, -396.2055, 174.36555, -17.061806, 968.8709)
 
+[node name="Landscape" parent="environment/landscape5" index="0"]
+material_override = ExtResource("7_xo8fn")
+
 [node name="landscape6" parent="environment" instance=ExtResource("9_dvopj")]
 transform = Transform3D(-374.16403, 0, 469.04285, 0, 599.99994, 0, -469.04285, 0, -374.16403, 112.64638, -0.7753296, -974.3602)
+
+[node name="Landscape_001" parent="environment/landscape6" index="0"]
+material_override = ExtResource("7_xo8fn")
 
 [node name="landscape7" parent="environment" instance=ExtResource("8_bpnj1")]
 transform = Transform3D(-549.2291, 0, -241.55223, 0, 600.00006, 0, 241.55223, 0, -549.2291, -803.7882, -17.061806, -220.97163)
 
+[node name="Landscape" parent="environment/landscape7" index="0"]
+material_override = ExtResource("7_xo8fn")
+
 [node name="landscape8" parent="environment" instance=ExtResource("9_dvopj")]
 transform = Transform3D(506.32724, 0, 321.9205, 0, 599.99994, 0, -321.9205, 0, 506.32724, 1090.8, -0.7753296, 215.4824)
+
+[node name="Landscape_001" parent="environment/landscape8" index="0"]
+material_override = ExtResource("7_xo8fn")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="environment"]
 environment = SubResource("Environment_dvopj")
@@ -140,4 +187,19 @@ light_energy = 0.855
 light_volumetric_fog_energy = 0.0
 light_angular_distance = 5.94
 
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.277447, 0)
+amount = 500
+lifetime = 10.0
+process_material = SubResource("ParticleProcessMaterial_ygwfa")
+draw_pass_1 = SubResource("BoxMesh_bpnj1")
+
 [editable path="donut_saucisse"]
+[editable path="environment/landscape1"]
+[editable path="environment/landscape2"]
+[editable path="environment/landscape3"]
+[editable path="environment/landscape4"]
+[editable path="environment/landscape5"]
+[editable path="environment/landscape6"]
+[editable path="environment/landscape7"]
+[editable path="environment/landscape8"]
