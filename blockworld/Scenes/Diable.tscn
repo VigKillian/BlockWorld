@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://dn8bii54gsif0"]
+
+[ext_resource type="ArrayMesh" uid="uid://dbos5e24jn617" path="res://ressources/diable.obj" id="1_vfyek"]
+[ext_resource type="ArrayMesh" uid="uid://c605m4xl326jt" path="res://ressources/trident.obj" id="2_s53xr"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vfyek"]
+shading_mode = 2
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.7019608, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s53xr"]
+shading_mode = 2
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.32222986, 0.17662087, 0.25036752, 1)
+
+[node name="Body" type="MeshInstance3D"]
+material_override = SubResource("StandardMaterial3D_vfyek")
+mesh = ExtResource("1_vfyek")
+
+[node name="Trident" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.011051402, -0.013620106, -0.9998462, 0.7765306, 0.6300796, 0, 0.6299827, -0.7764111, 0.017539691, 1.3041677, 1.7941583, 0.38250694)
+material_override = SubResource("StandardMaterial3D_s53xr")
+mesh = ExtResource("2_s53xr")

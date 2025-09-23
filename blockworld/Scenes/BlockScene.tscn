@@ -1,6 +1,6 @@
 [gd_scene load_steps=26 format=3 uid="uid://ykary12vqwi"]
 
-[ext_resource type="Script" uid="uid://d1cmtslgi1sa5" path="res://Scripts/block_scene.gd" id="1_dvopj"]
+[ext_resource type="Script" uid="uid://d1cmtslgi1sa5" path="res://Scripts/camera.gd" id="1_dvopj"]
 [ext_resource type="PackedScene" uid="uid://i2epcvaymddu" path="res://Scenes/Table.tscn" id="1_spaj1"]
 [ext_resource type="Texture2D" uid="uid://ddjv0jh8yy6i0" path="res://ressources/white_wood.jpg" id="2_tg54b"]
 [ext_resource type="Texture2D" uid="uid://cywcd8q4ksu5c" path="res://ressources/Texturelabs_Stone_127S.jpg" id="3_7v43y"]
@@ -8,8 +8,8 @@
 [ext_resource type="Material" uid="uid://blix246u66hxa" path="res://ressources/landscape.tres" id="7_xo8fn"]
 [ext_resource type="PackedScene" uid="uid://d2ym0sx32n6ih" path="res://ressources/donut_saucisse.glb" id="7_ygwfa"]
 [ext_resource type="PackedScene" uid="uid://cglfy1p0ssune" path="res://ressources/landscape1.glb" id="8_bpnj1"]
-[ext_resource type="ArrayMesh" uid="uid://c605m4xl326jt" path="res://ressources/trident.obj" id="9_bpnj1"]
 [ext_resource type="PackedScene" uid="uid://bl7hkynpd8m7l" path="res://ressources/landscape2.glb" id="9_dvopj"]
+[ext_resource type="PackedScene" uid="uid://dn8bii54gsif0" path="res://Scenes/Diable.tscn" id="10_dvopj"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jqrs7"]
 albedo_color = Color(0.317751, 0.241317, 0.123903, 1)
@@ -86,6 +86,14 @@ material = SubResource("StandardMaterial3D_xo8fn")
 [node name="BlockScene" type="Node3D"]
 
 [node name="Table" parent="." instance=ExtResource("1_spaj1")]
+material_override = SubResource("StandardMaterial3D_jqrs7")
+
+[node name="Table2" parent="." instance=ExtResource("1_spaj1")]
+transform = Transform3D(3, 0, 0, 0, 0.3, 0, 0, 0, 3, 7.422451, 1.82446, -6.3463864)
+material_override = SubResource("StandardMaterial3D_jqrs7")
+
+[node name="Table3" parent="." instance=ExtResource("1_spaj1")]
+transform = Transform3D(3, 0, 0, 0, 0.3, 0, 0, 0, 3, 5.012865, 1.82446, 7.6184216)
 material_override = SubResource("StandardMaterial3D_jqrs7")
 
 [node name="PetitCube" type="MeshInstance3D" parent="."]
@@ -201,9 +209,8 @@ lifetime = 10.0
 process_material = SubResource("ParticleProcessMaterial_ygwfa")
 draw_pass_1 = SubResource("BoxMesh_bpnj1")
 
-[node name="Trident" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8065205, 0.8907416, -4.138702)
-mesh = ExtResource("9_bpnj1")
+[node name="Diable" parent="." instance=ExtResource("10_dvopj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 5.233821, 0, -6.1319234e-08)
 
 [editable path="donut_saucisse"]
 [editable path="environment/landscape1"]
