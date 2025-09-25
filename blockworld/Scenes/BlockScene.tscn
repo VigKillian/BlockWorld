@@ -1,9 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://ykary12vqwi"]
+[gd_scene load_steps=18 format=3 uid="uid://ykary12vqwi"]
 
 [ext_resource type="Texture2D" uid="uid://cywcd8q4ksu5c" path="res://ressources/Texturelabs_Stone_127S.jpg" id="3_7v43y"]
 [ext_resource type="PackedScene" uid="uid://cupx6ue1wokhx" path="res://Scenes/simulation_spaces/table_donuts/table_donuts.tscn" id="6_phf2b"]
+[ext_resource type="Script" uid="uid://wuge7vtcet2p" path="res://Classes/Actions/translate.gd" id="7_bpnj1"]
 [ext_resource type="Material" uid="uid://blix246u66hxa" path="res://ressources/landscape.tres" id="7_xo8fn"]
 [ext_resource type="PackedScene" uid="uid://cglfy1p0ssune" path="res://ressources/landscape1.glb" id="8_bpnj1"]
+[ext_resource type="Script" uid="uid://dxppnbks1q0po" path="res://Classes/Actions/rotate.gd" id="8_dvopj"]
 [ext_resource type="PackedScene" uid="uid://bl7hkynpd8m7l" path="res://ressources/landscape2.glb" id="9_dvopj"]
 [ext_resource type="PackedScene" uid="uid://dn8bii54gsif0" path="res://Scenes/Diable.tscn" id="10_dvopj"]
 
@@ -52,6 +54,16 @@ emission_energy_multiplier = 7.26
 
 [sub_resource type="BoxMesh" id="BoxMesh_bpnj1"]
 material = SubResource("StandardMaterial3D_xo8fn")
+
+[sub_resource type="Resource" id="Resource_l8ntn"]
+script = ExtResource("8_dvopj")
+p_degree = 90
+metadata/_custom_type_script = "uid://dxppnbks1q0po"
+
+[sub_resource type="Resource" id="Resource_3u8ac"]
+script = ExtResource("7_bpnj1")
+p_delta = Vector3i(-3, 0, 0)
+metadata/_custom_type_script = "uid://wuge7vtcet2p"
 
 [node name="BlockScene" type="Node3D"]
 
@@ -145,7 +157,11 @@ draw_pass_1 = SubResource("BoxMesh_bpnj1")
 [node name="Diable" parent="." instance=ExtResource("10_dvopj")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 5.233821, 0, -6.1319234e-08)
 
-[node name="SimulationSpace" parent="." instance=ExtResource("6_phf2b")]
+[node name="SimulationSpace" parent="." node_paths=PackedStringArray("actions") instance=ExtResource("6_phf2b")]
+actions = {
+SubResource("Resource_l8ntn"): NodePath("Cylindre"),
+SubResource("Resource_3u8ac"): NodePath("Cylindre")
+}
 
 [editable path="environment/landscape1"]
 [editable path="environment/landscape2"]

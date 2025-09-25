@@ -3,20 +3,26 @@ class_name SimulationSpace
 
 #@export var scene_children : Array[Node3D]
 
-@export var actions: Dictionary[Agent, Action]
+@export var actions: Dictionary[Action, Agent]
 
 func _process(delta: float) -> void:
 	if(Input.is_action_just_pressed("ui_accept")):
 		save_scene_as_json()
 		print("Données enregistrées")
 
+func _ready() -> void:
+	start_simulation()
+	print(actions)
+
 func start_simulation():
+	print("action start")
 	for a in actions.keys():
-		actions[a].exec(a)
-		await get_tree().create_timer(1.0)
-		# sauvegarder scène
+		if not is_instance_valid(a): continue
+		a.exec(actions[a])
 		
+		await get_tree().create_timer(1.0).timeout
 		print("Action exécutée")
+		# sauvegarder scène
 	
 func stop_simulation():
 	pass

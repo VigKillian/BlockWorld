@@ -1,11 +1,11 @@
 extends Action
-
-static var ranges: Dictionary = {
+class_name ActionRotate
+var ranges: Dictionary = {
 	"p_degree" : [0, 270, 90], # min, max, step
 	"p_axis" : [0, 2, 1]
 }
 @export var p_degree: int
-@export var p_axis: int
+@export_enum("X", "Y", "Z") var p_axis: int
 
 func check_ranges():
 	p_degree = clamp(p_degree, ranges["p_degree"][0], ranges["p_degree"][1])
@@ -16,4 +16,4 @@ func exec(agent: Agent):
 	check_ranges()
 	var axis = Vector3.ZERO
 	axis[p_axis] = 1
-	agent.global_rotate(axis, p_degree)
+	agent.global_rotate(axis, deg_to_rad(p_degree))
