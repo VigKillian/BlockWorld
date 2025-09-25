@@ -5,9 +5,10 @@ class_name Action
 
 #var instr_script: Script = null
 
-@export var target_agent_name: StringName = ""
+#@export var target_agent_name: StringName = ""
 
-@export_multiline var code: String
+#@export_multiline var code: String
+
 
 @abstract
 func exec(agent: Agent)
