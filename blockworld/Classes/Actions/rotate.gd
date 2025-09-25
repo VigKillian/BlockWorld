@@ -14,3 +14,6 @@ func check_ranges():
 
 func exec(agent: Agent):
 	check_ranges()
+	var axis = Vector3.ZERO
+	axis[p_axis] = 1
+	agent.global_rotate(axis, p_degree)
