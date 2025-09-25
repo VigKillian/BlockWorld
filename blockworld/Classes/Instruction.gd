@@ -1,16 +1,20 @@
+@abstract
 extends Resource
 class_name Action
 
 
-var instr_script: Script = null
+#var instr_script: Script = null
 
 @export var target_agent_name: StringName = ""
 
 @export_multiline var code: String
 
-# advanced : scripts must have a main () function and get 
-@export var advanced := false
+@abstract
+func exec(agent: Agent)
 
+# advanced : scripts must have a main () function and get 
+# @export var advanced := false
+"""
 func compile():
 	instr_script = GDScript.new()
 	if (not advanced):
@@ -25,6 +29,7 @@ func run(agent: Agent, data: Dictionary):
 	var ref = RefCounted.new()
 	ref.set_script(instr_script)
 	return ref.main(agent, data)
+"""
 
 
 # Available functions. TODO : Other instructions available aswell
