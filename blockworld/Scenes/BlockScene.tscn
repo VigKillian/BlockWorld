@@ -1,42 +1,13 @@
-[gd_scene load_steps=27 format=3 uid="uid://ykary12vqwi"]
+[gd_scene load_steps=16 format=3 uid="uid://ykary12vqwi"]
 
-[ext_resource type="PackedScene" uid="uid://i2epcvaymddu" path="res://Scenes/Table.tscn" id="1_spaj1"]
-[ext_resource type="Texture2D" uid="uid://ddjv0jh8yy6i0" path="res://ressources/white_wood.jpg" id="2_tg54b"]
 [ext_resource type="Texture2D" uid="uid://cywcd8q4ksu5c" path="res://ressources/Texturelabs_Stone_127S.jpg" id="3_7v43y"]
-[ext_resource type="Texture2D" uid="uid://dd28ro1h3rfpv" path="res://ressources/tungsten.jpg" id="4_eq0un"]
-[ext_resource type="Script" path="res://Scripts/camera.gd" id="5_awt2u"]
+[ext_resource type="Script" uid="uid://d1cmtslgi1sa5" path="res://Scripts/camera.gd" id="5_awt2u"]
+[ext_resource type="PackedScene" uid="uid://cupx6ue1wokhx" path="res://Scenes/simulation_spaces/table_donuts/table_donuts.tscn" id="6_phf2b"]
 [ext_resource type="Material" uid="uid://blix246u66hxa" path="res://ressources/landscape.tres" id="7_xo8fn"]
-[ext_resource type="PackedScene" uid="uid://d2ym0sx32n6ih" path="res://ressources/donut_saucisse.glb" id="7_ygwfa"]
 [ext_resource type="PackedScene" uid="uid://cglfy1p0ssune" path="res://ressources/landscape1.glb" id="8_bpnj1"]
 [ext_resource type="PackedScene" uid="uid://bl7hkynpd8m7l" path="res://ressources/landscape2.glb" id="9_dvopj"]
 [ext_resource type="PackedScene" uid="uid://boe1g303g05op" path="res://Scenes/fire.tscn" id="10_awt2u"]
-[ext_resource type="PackedScene" path="res://Scenes/Diable.tscn" id="10_dvopj"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jqrs7"]
-albedo_color = Color(0.317751, 0.241317, 0.123903, 1)
-albedo_texture = ExtResource("2_tg54b")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ldfo8"]
-albedo_color = Color(0.305517, 0.000989568, 0.513548, 1)
-albedo_texture = ExtResource("2_tg54b")
-
-[sub_resource type="BoxMesh" id="BoxMesh_kw6yq"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_534a0"]
-albedo_color = Color(0.377919, 0.377919, 0.377919, 1)
-albedo_texture = ExtResource("3_7v43y")
-
-[sub_resource type="BoxMesh" id="BoxMesh_cpnd3"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kua6l"]
-albedo_texture = ExtResource("4_eq0un")
-metallic = 1.0
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_hdxr0"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ygwfa"]
-albedo_color = Color(0.678431, 0.847059, 0.827451, 1)
-metallic = 1.0
+[ext_resource type="PackedScene" uid="uid://dn8bii54gsif0" path="res://Scenes/Diable.tscn" id="10_dvopj"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_awt2u"]
 albedo_texture = ExtResource("3_7v43y")
@@ -86,40 +57,6 @@ material = SubResource("StandardMaterial3D_xo8fn")
 
 [node name="BlockScene" type="Node3D"]
 
-[node name="Table" parent="." instance=ExtResource("1_spaj1")]
-material_override = SubResource("StandardMaterial3D_jqrs7")
-
-[node name="Table2" parent="." instance=ExtResource("1_spaj1")]
-transform = Transform3D(3, 0, 0, 0, 0.3, 0, 0, 0, 3, 7.422451, 1.82446, -6.3463864)
-material_override = SubResource("StandardMaterial3D_jqrs7")
-
-[node name="Table3" parent="." instance=ExtResource("1_spaj1")]
-transform = Transform3D(3, 0, 0, 0, 0.3, 0, 0, 0, 3, 5.012865, 1.82446, 7.6184216)
-material_override = SubResource("StandardMaterial3D_jqrs7")
-
-[node name="Table4" parent="." instance=ExtResource("1_spaj1")]
-transform = Transform3D(3, 0, 0, 0, 0.3, 0, 0, 0, 3, 7.422451, 1.82446, -6.3463864)
-material_override = SubResource("StandardMaterial3D_jqrs7")
-
-[node name="Table5" parent="." instance=ExtResource("1_spaj1")]
-transform = Transform3D(3, 0, 0, 0, 0.3, 0, 0, 0, 3, 5.012865, 1.82446, 7.6184216)
-material_override = SubResource("StandardMaterial3D_jqrs7")
-
-[node name="PetitCube" type="MeshInstance3D" parent="." groups=["scene_objects"]]
-transform = Transform3D(0.18, 0, 0, 0, 0.18, 0, 0, 0, 0.18, -0.91321, 2.06587, -0.832053)
-material_override = SubResource("StandardMaterial3D_ldfo8")
-mesh = SubResource("BoxMesh_kw6yq")
-
-[node name="GrandCube" type="MeshInstance3D" parent="." groups=["scene_objects"]]
-transform = Transform3D(0.29, 0, 0, 0, 0.29, 0, 0, 0, 0.29, -0.91596, 2.30108, -0.830718)
-material_override = SubResource("StandardMaterial3D_534a0")
-mesh = SubResource("BoxMesh_cpnd3")
-
-[node name="Cylindre" type="MeshInstance3D" parent="." groups=["scene_objects"]]
-transform = Transform3D(0.138, 0, 0, 0, 0.7, 0, 0, 0, 0.138, 1.201, 2.67473, -1.07313)
-material_override = SubResource("StandardMaterial3D_kua6l")
-mesh = SubResource("CylinderMesh_hdxr0")
-
 [node name="CameraRig" type="Node3D" parent="."]
 script = ExtResource("5_awt2u")
 
@@ -128,16 +65,6 @@ script = ExtResource("5_awt2u")
 [node name="Camera3D" type="Camera3D" parent="CameraRig/CameraPitch"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.21158075, 3.982, 3.9635825)
 fov = 50.0
-
-[node name="donut_saucisse" parent="." groups=["scene_objects"] instance=ExtResource("7_ygwfa")]
-transform = Transform3D(-7.64949e-09, 0, 0.175, 0, 0.175, 0, -0.175, 0, -7.64949e-09, -0.558373, 2.0891, 1.18887)
-
-[node name="Cylinder" parent="donut_saucisse" index="0"]
-material_override = SubResource("StandardMaterial3D_ygwfa")
-
-[node name="Torus_001" parent="donut_saucisse" index="1"]
-transform = Transform3D(-7.17558e-08, 1.64158, 0, -1.64158, -7.17558e-08, 0, 0, 0, 1.64158, 0, 2.34334, -0.00340822)
-material_override = SubResource("StandardMaterial3D_ygwfa")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.495657, 0)
@@ -216,7 +143,7 @@ light_angular_distance = 5.94
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.627015, 5.6740465, 0.061938643)
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.277447, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.4345284, 0)
 amount = 500
 lifetime = 10.0
 process_material = SubResource("ParticleProcessMaterial_ygwfa")
@@ -225,7 +152,9 @@ draw_pass_1 = SubResource("BoxMesh_bpnj1")
 [node name="Diable" parent="." instance=ExtResource("10_dvopj")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 5.233821, 0, -6.1319234e-08)
 
-[editable path="donut_saucisse"]
+[node name="SimulationSpace" parent="." node_paths=PackedStringArray("actions") instance=ExtResource("6_phf2b")]
+actions = {}
+
 [editable path="environment/landscape1"]
 [editable path="environment/landscape2"]
 [editable path="environment/landscape3"]
