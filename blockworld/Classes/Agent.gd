@@ -17,6 +17,8 @@ var data: Dictionary
 
 #func jump(strength: float):
 	#apply_central_impulse(Vector3.UP * strength)
-	
-	
-#func wait()
+
+
+func wait():
+	pass
+
