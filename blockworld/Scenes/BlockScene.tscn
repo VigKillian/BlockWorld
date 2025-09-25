@@ -8,7 +8,6 @@
 [ext_resource type="Material" uid="uid://blix246u66hxa" path="res://ressources/landscape.tres" id="7_xo8fn"]
 [ext_resource type="PackedScene" uid="uid://d2ym0sx32n6ih" path="res://ressources/donut_saucisse.glb" id="7_ygwfa"]
 [ext_resource type="PackedScene" uid="uid://cglfy1p0ssune" path="res://ressources/landscape1.glb" id="8_bpnj1"]
-[ext_resource type="Script" uid="uid://41snujxmb8fs" path="res://Classes/SimulationSpace.gd" id="9_bpnj1"]
 [ext_resource type="PackedScene" uid="uid://bl7hkynpd8m7l" path="res://ressources/landscape2.glb" id="9_dvopj"]
 [ext_resource type="PackedScene" uid="uid://dn8bii54gsif0" path="res://Scenes/Diable.tscn" id="10_dvopj"]
 
@@ -97,11 +96,11 @@ material_override = SubResource("StandardMaterial3D_jqrs7")
 transform = Transform3D(3, 0, 0, 0, 0.3, 0, 0, 0, 3, 5.012865, 1.82446, 7.6184216)
 material_override = SubResource("StandardMaterial3D_jqrs7")
 
-[node name="Table2" parent="." instance=ExtResource("1_spaj1")]
+[node name="Table4" parent="." instance=ExtResource("1_spaj1")]
 transform = Transform3D(3, 0, 0, 0, 0.3, 0, 0, 0, 3, 7.422451, 1.82446, -6.3463864)
 material_override = SubResource("StandardMaterial3D_jqrs7")
 
-[node name="Table3" parent="." instance=ExtResource("1_spaj1")]
+[node name="Table5" parent="." instance=ExtResource("1_spaj1")]
 transform = Transform3D(3, 0, 0, 0, 0.3, 0, 0, 0, 3, 5.012865, 1.82446, 7.6184216)
 material_override = SubResource("StandardMaterial3D_jqrs7")
 
