@@ -29,6 +29,8 @@ func generate_all_vec3i(range: Array) -> Array[Vector3i]:
 		v.x += range[2][0]
 	return res
 
+
+
 func generate_all_actions(agent: Agent) -> Array[Action]:
 	var res: Array[Action] = []
 	

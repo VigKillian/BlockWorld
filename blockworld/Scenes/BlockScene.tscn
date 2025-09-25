@@ -140,7 +140,7 @@ light_volumetric_fog_energy = 0.0
 light_angular_distance = 5.94
 
 [node name="Fire" parent="environment" instance=ExtResource("10_awt2u")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.627015, 5.6740465, 0.061938643)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.25398, 5.6740465, 0.061938643)
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.4345284, 0)
