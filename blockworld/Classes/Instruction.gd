@@ -1,8 +1,10 @@
 extends Resource
-class_name Instruction
+class_name Action
 
 
 var instr_script: Script = null
+
+@export var target_agent_name: StringName = ""
 
 @export_multiline var code: String
 
