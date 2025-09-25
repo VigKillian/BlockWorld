@@ -1,0 +1,97 @@
+[gd_scene load_steps=9 format=3 uid="uid://mwe02i4j3qwh"]
+
+[ext_resource type="Script" uid="uid://cbp4ma2hdbgrp" path="res://Scripts/menu.gd" id="1_q3rjx"]
+[ext_resource type="Texture2D" uid="uid://clvfsdl0d5mlw" path="res://ressources/title_dg.png" id="1_wwsa2"]
+[ext_resource type="Texture2D" uid="uid://l6gvd7nafaos" path="res://ressources/fond_main.png" id="2_6swd7"]
+[ext_resource type="Texture2D" uid="uid://dwv27lr0qcl3q" path="res://ressources/lancer_gb.png" id="2_jsrd8"]
+[ext_resource type="Texture2D" uid="uid://8ka5itqk02nc" path="res://ressources/lancer_gb2.png" id="3_wbdvm"]
+[ext_resource type="Texture2D" uid="uid://baopyo6brjqp7" path="res://ressources/quitter_gb.png" id="4_q3rjx"]
+[ext_resource type="Texture2D" uid="uid://b16detai5vof0" path="res://ressources/quitter_gb2.png" id="5_6swd7"]
+[ext_resource type="Texture2D" uid="uid://br0pvdeop8wpe" path="res://ressources/devil_bg.png" id="6_jsrd8"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_q3rjx")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_6swd7")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.40392157, 0.19215687, 0.23921569, 0.47058824)
+
+[node name="title" type="TextureRect" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.09900001
+anchor_top = 0.042000003
+anchor_right = 0.818
+anchor_bottom = 0.44900003
+offset_left = 0.04800415
+offset_top = -0.21600151
+offset_right = -0.33599854
+offset_bottom = 0.047973633
+grow_horizontal = 2
+texture = ExtResource("1_wwsa2")
+
+[node name="lancer" type="TextureButton" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.679
+anchor_top = 0.47700003
+anchor_right = 0.93600005
+anchor_bottom = 0.67800003
+offset_left = -26.207947
+offset_top = 73.90402
+offset_right = 40.394653
+offset_bottom = 11.656006
+rotation = -0.2617994
+texture_normal = ExtResource("2_jsrd8")
+texture_hover = ExtResource("3_wbdvm")
+stretch_mode = 0
+
+[node name="quitter" type="TextureButton" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.517
+anchor_top = 0.66700006
+anchor_right = 0.75900006
+anchor_bottom = 0.874
+offset_left = 0.4159546
+offset_top = -0.21603394
+offset_right = 28.049927
+offset_bottom = -66.35199
+rotation = 0.2617994
+texture_normal = ExtResource("4_q3rjx")
+texture_hover = ExtResource("5_6swd7")
+stretch_mode = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(341, 463)
+rotation = -0.2617994
+scale = Vector2(0.6437225, 0.6437225)
+texture = ExtResource("6_jsrd8")
+
+[connection signal="pressed" from="lancer" to="." method="_on_lancer_pressed"]
+[connection signal="pressed" from="quitter" to="." method="_on_quitter_pressed"]
