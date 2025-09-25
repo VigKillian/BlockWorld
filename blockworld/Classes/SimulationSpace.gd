@@ -11,12 +11,27 @@ func _process(delta: float) -> void:
 		print("Données enregistrées")
 
 func start_simulation():
+	var previousStep: Step
 	for a in actions.keys():
 		actions[a].exec(a)
 		await get_tree().create_timer(2.0)
 		# sauvegarder scène
+		var currentStep: Step
+		currentStep.agent = a
+		currentStep.action = actions[a]
+		
+		var state: Dictionary
+		for agent in actions.keys():
+			state[agent]["data"] = agent.data
+			state[agent]["transform"] = agent.global_transform 
+		currentStep.state = state
+		if previousStep != null:
+			currentStep.parent = previousStep
+		previousStep = currentStep
 		
 		print("Action exécutée")
+	
+	previousStep.save()
 	
 func stop_simulation():
 	pass

@@ -1,6 +1,5 @@
 [gd_scene load_steps=26 format=3 uid="uid://ykary12vqwi"]
 
-[ext_resource type="Script" path="res://Scripts/block_scene.gd" id="1_dvopj"]
 [ext_resource type="PackedScene" uid="uid://i2epcvaymddu" path="res://Scenes/Table.tscn" id="1_spaj1"]
 [ext_resource type="Texture2D" uid="uid://ddjv0jh8yy6i0" path="res://ressources/white_wood.jpg" id="2_tg54b"]
 [ext_resource type="Texture2D" uid="uid://cywcd8q4ksu5c" path="res://ressources/Texturelabs_Stone_127S.jpg" id="3_7v43y"]
@@ -9,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://d2ym0sx32n6ih" path="res://ressources/donut_saucisse.glb" id="7_ygwfa"]
 [ext_resource type="PackedScene" uid="uid://cglfy1p0ssune" path="res://ressources/landscape1.glb" id="8_bpnj1"]
 [ext_resource type="PackedScene" uid="uid://bl7hkynpd8m7l" path="res://ressources/landscape2.glb" id="9_dvopj"]
+[ext_resource type="PackedScene" uid="uid://boe1g303g05op" path="res://Scenes/fire.tscn" id="10_awt2u"]
 [ext_resource type="PackedScene" path="res://Scenes/Diable.tscn" id="10_dvopj"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jqrs7"]
@@ -120,7 +120,6 @@ material_override = SubResource("StandardMaterial3D_kua6l")
 mesh = SubResource("CylinderMesh_hdxr0")
 
 [node name="CameraRig" type="Node3D" parent="."]
-script = ExtResource("1_dvopj")
 
 [node name="CameraPitch" type="Node3D" parent="CameraRig"]
 
@@ -209,6 +208,9 @@ light_color = Color(0, 0, 0, 1)
 light_energy = 0.855
 light_volumetric_fog_energy = 0.0
 light_angular_distance = 5.94
+
+[node name="Fire" parent="environment" instance=ExtResource("10_awt2u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.627015, 5.6740465, 0.061938643)
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.277447, 0)
