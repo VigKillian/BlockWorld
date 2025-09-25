@@ -13,7 +13,7 @@ func _process(delta: float) -> void:
 func start_simulation():
 	for a in actions.keys():
 		actions[a].exec(a)
-		await get_tree().create_timer(2.0)
+		await get_tree().create_timer(1.0)
 		# sauvegarder scène
 		
 		print("Action exécutée")
