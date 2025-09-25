@@ -1,9 +1,9 @@
 extends Node3D
 class_name SimulationSpace
 
-@export var scene_children : Array[Node3D]
-@export var agents_list : Array[Agent]
-var objects : Array[Node3D]
+#@export var scene_children : Array[Node3D]
+
+@export var actions: Dictionary[Agent, Action]
 
 func _process(delta: float) -> void:
 	if(Input.is_action_just_pressed("ui_accept")):
@@ -11,7 +11,12 @@ func _process(delta: float) -> void:
 		print("Données enregistrées")
 
 func start_simulation():
-	pass
+	for a in actions.keys():
+		actions[a].exec(a)
+		await get_tree().create_timer(2.0)
+		# sauvegarder scène
+		
+		print("Action exécutée")
 	
 func stop_simulation():
 	pass

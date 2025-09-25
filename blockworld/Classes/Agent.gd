@@ -21,4 +21,3 @@ var data: Dictionary
 
 func wait():
 	pass
-
