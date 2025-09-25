@@ -16,13 +16,29 @@ func _ready() -> void:
 
 func start_simulation():
 	print("action start")
+	var previousStep: Step
 	for a in actions.keys():
 		if not is_instance_valid(a): continue
 		a.exec(actions[a])
-		
-		await get_tree().create_timer(1.0).timeout
+		await get_tree().create_timer(2.0)
 		print("Action exécutée")
 		# sauvegarder scène
+		var currentStep: Step
+		currentStep.agent = actions[a]
+		currentStep.action = a
+		
+		var state: Dictionary
+		for agent in actions.keys():
+			state[agent]["data"] = agent.data
+			state[agent]["transform"] = agent.global_transform 
+		currentStep.state = state
+		if previousStep != null:
+			currentStep.parent = previousStep
+		previousStep = currentStep
+		
+		await get_tree().create_timer(1.0).timeout
+	
+	previousStep.save()
 	
 func stop_simulation():
 	pass
