@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="ActionTranslate" load_steps=2 format=3 uid="uid://byqil2n3obfjc"]
+
+[ext_resource type="Script" uid="uid://wuge7vtcet2p" path="res://Classes/Actions/translate.gd" id="1_ecbxi"]
+
+[resource]
+script = ExtResource("1_ecbxi")
+metadata/_custom_type_script = "uid://wuge7vtcet2p"

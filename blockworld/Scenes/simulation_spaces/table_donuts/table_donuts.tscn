@@ -51,6 +51,7 @@ metadata/_custom_type_script = "uid://41snujxmb8fs"
 [node name="donutsociss" type="RigidBody3D" parent="."]
 transform = Transform3D(1.9106857e-15, -4.371139e-08, 1, -1, -4.371139e-08, 1.8428085e-22, 4.371139e-08, -1, -4.371139e-08, -0.55896944, 2.4991844, 1.18887)
 freeze = true
+freeze_mode = 1
 script = ExtResource("6_qwo5e")
 metadata/_custom_type_script = "uid://dc72nl88lgkdn"
 
@@ -91,6 +92,8 @@ mesh = SubResource("BoxMesh_s2wvk")
 
 [node name="Cylindre" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.201, 2.67473, -1.07313)
+freeze = true
+freeze_mode = 1
 script = ExtResource("6_qwo5e")
 metadata/_custom_type_script = "uid://dc72nl88lgkdn"
 
