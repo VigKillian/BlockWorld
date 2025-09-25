@@ -18,4 +18,5 @@ func check_ranges():
 	p_delta = p_delta.snapped(ranges["p_delta"][2])
 
 func exec(agent: Agent):
+	check_ranges()
 	agent.global_position += Vector3(p_delta)
