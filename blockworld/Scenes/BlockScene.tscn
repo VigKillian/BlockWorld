@@ -1,9 +1,10 @@
-[gd_scene load_steps=26 format=3 uid="uid://ykary12vqwi"]
+[gd_scene load_steps=27 format=3 uid="uid://ykary12vqwi"]
 
 [ext_resource type="PackedScene" uid="uid://i2epcvaymddu" path="res://Scenes/Table.tscn" id="1_spaj1"]
 [ext_resource type="Texture2D" uid="uid://ddjv0jh8yy6i0" path="res://ressources/white_wood.jpg" id="2_tg54b"]
 [ext_resource type="Texture2D" uid="uid://cywcd8q4ksu5c" path="res://ressources/Texturelabs_Stone_127S.jpg" id="3_7v43y"]
 [ext_resource type="Texture2D" uid="uid://dd28ro1h3rfpv" path="res://ressources/tungsten.jpg" id="4_eq0un"]
+[ext_resource type="Script" path="res://Scripts/camera.gd" id="5_awt2u"]
 [ext_resource type="Material" uid="uid://blix246u66hxa" path="res://ressources/landscape.tres" id="7_xo8fn"]
 [ext_resource type="PackedScene" uid="uid://d2ym0sx32n6ih" path="res://ressources/donut_saucisse.glb" id="7_ygwfa"]
 [ext_resource type="PackedScene" uid="uid://cglfy1p0ssune" path="res://ressources/landscape1.glb" id="8_bpnj1"]
@@ -120,11 +121,13 @@ material_override = SubResource("StandardMaterial3D_kua6l")
 mesh = SubResource("CylinderMesh_hdxr0")
 
 [node name="CameraRig" type="Node3D" parent="."]
+script = ExtResource("5_awt2u")
 
 [node name="CameraPitch" type="Node3D" parent="CameraRig"]
 
 [node name="Camera3D" type="Camera3D" parent="CameraRig/CameraPitch"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.21158075, 3.982, 3.9635825)
+fov = 50.0
 
 [node name="donut_saucisse" parent="." groups=["scene_objects"] instance=ExtResource("7_ygwfa")]
 transform = Transform3D(-7.64949e-09, 0, 0.175, 0, 0.175, 0, -0.175, 0, -7.64949e-09, -0.558373, 2.0891, 1.18887)

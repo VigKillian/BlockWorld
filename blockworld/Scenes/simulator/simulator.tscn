@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://b6sr7hf6psl6j"]
+
+[ext_resource type="Script" uid="uid://dcuv3n07708d2" path="res://Scenes/simulator/simulator.gd" id="1_qgc18"]
+
+[node name="Simulator" type="Node3D"]
+script = ExtResource("1_qgc18")
+
+[node name="level_1" type="Node3D" parent="."]

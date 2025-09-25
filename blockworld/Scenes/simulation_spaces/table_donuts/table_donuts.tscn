@@ -1,12 +1,24 @@
-[gd_scene load_steps=19 format=3 uid="uid://cupx6ue1wokhx"]
+[gd_scene load_steps=23 format=3 uid="uid://cupx6ue1wokhx"]
 
 [ext_resource type="Script" uid="uid://41snujxmb8fs" path="res://Classes/SimulationSpace.gd" id="1_0vb6x"]
+[ext_resource type="Script" uid="uid://dxppnbks1q0po" path="res://Classes/Actions/rotate.gd" id="2_dbs46"]
+[ext_resource type="Script" uid="uid://wuge7vtcet2p" path="res://Classes/Actions/translate.gd" id="2_l8ntn"]
 [ext_resource type="PackedScene" uid="uid://i2epcvaymddu" path="res://Scenes/Table.tscn" id="2_phpnk"]
 [ext_resource type="Texture2D" uid="uid://ddjv0jh8yy6i0" path="res://ressources/white_wood.jpg" id="3_dbs46"]
 [ext_resource type="Texture2D" uid="uid://cywcd8q4ksu5c" path="res://ressources/Texturelabs_Stone_127S.jpg" id="4_l8ntn"]
 [ext_resource type="PackedScene" uid="uid://d2ym0sx32n6ih" path="res://ressources/donut_saucisse.glb" id="5_3u8ac"]
 [ext_resource type="Script" uid="uid://dc72nl88lgkdn" path="res://Classes/Agent.gd" id="6_qwo5e"]
 [ext_resource type="Texture2D" uid="uid://dd28ro1h3rfpv" path="res://ressources/tungsten.jpg" id="7_4oqv0"]
+
+[sub_resource type="Resource" id="Resource_l8ntn"]
+script = ExtResource("2_dbs46")
+p_degree = 90
+metadata/_custom_type_script = "uid://dxppnbks1q0po"
+
+[sub_resource type="Resource" id="Resource_3u8ac"]
+script = ExtResource("2_l8ntn")
+p_delta = Vector3i(-3, 0, 0)
+metadata/_custom_type_script = "uid://wuge7vtcet2p"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qe5yc"]
 albedo_color = Color(0.678431, 0.847059, 0.827451, 1)
@@ -44,13 +56,18 @@ metallic = 1.0
 height = 1.3896484
 radius = 0.08642578
 
-[node name="SimulationSpace" type="Node3D"]
+[node name="SimulationSpace" type="Node3D" node_paths=PackedStringArray("actions")]
 script = ExtResource("1_0vb6x")
+actions = {
+SubResource("Resource_l8ntn"): NodePath("Cylindre"),
+SubResource("Resource_3u8ac"): NodePath("Cylindre")
+}
 metadata/_custom_type_script = "uid://41snujxmb8fs"
 
 [node name="donutsociss" type="RigidBody3D" parent="."]
 transform = Transform3D(1.9106857e-15, -4.371139e-08, 1, -1, -4.371139e-08, 1.8428085e-22, 4.371139e-08, -1, -4.371139e-08, -0.55896944, 2.4991844, 1.18887)
 freeze = true
+freeze_mode = 1
 script = ExtResource("6_qwo5e")
 metadata/_custom_type_script = "uid://dc72nl88lgkdn"
 
@@ -91,11 +108,13 @@ mesh = SubResource("BoxMesh_s2wvk")
 
 [node name="Cylindre" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.201, 2.67473, -1.07313)
+freeze = true
+freeze_mode = 1
 script = ExtResource("6_qwo5e")
 metadata/_custom_type_script = "uid://dc72nl88lgkdn"
 
 [node name="Mesh" type="MeshInstance3D" parent="Cylindre" groups=["scene_objects"]]
-transform = Transform3D(0.165, 0, 0, 0, 0.695, 0, 0, 0, 0.165, 0, 0, 0)
+transform = Transform3D(0.165, 0, 0, 0, 0.69500005, 0, 0, 0, 0.165, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_34tex")
 mesh = SubResource("CylinderMesh_oltp3")
 skeleton = NodePath("../..")
