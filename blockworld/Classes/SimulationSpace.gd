@@ -23,7 +23,7 @@ func start_simulation():
 		await get_tree().create_timer(2.0)
 		print("Action exécutée")
 		# sauvegarder scène
-		var currentStep: Step
+		var currentStep := Step.new()
 		currentStep.agent = actions[a]
 		currentStep.action = a
 		
