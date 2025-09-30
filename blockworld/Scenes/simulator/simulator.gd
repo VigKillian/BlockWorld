@@ -6,6 +6,8 @@ extends Node3D
 
 @export var available_actions : Array[Action] # dummy actions to copy and modify
 
+func initialize_agents(agents: Array[Agent]):
+	available_agents = agents
 
 func generate_all_ints(range: Array) -> Array[int]:
 	var res: Array[int]
@@ -79,6 +81,15 @@ func print_available_actions():
 		print("\n")
 
 func broad_research():
-	space.actions = {}
+	var new_spaces : Array[SimulationSpace]
+	var all_actions : Array[Action]
+	
+	for agent in available_agents:
+		all_actions.append_array(generate_all_actions(agent))
+	
+	for action in all_actions:
+		new_spaces.append(space.duplicate())
+		
+	
 	
 	
