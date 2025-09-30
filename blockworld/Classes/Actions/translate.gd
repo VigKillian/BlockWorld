@@ -2,8 +2,8 @@ extends Action
 class_name ActionTranslate
 var ranges: Dictionary = {
 	"p_delta" : [
-		Vector3i(-3, -1, -3),
-		Vector3i(3, 1, 3),
+		Vector3i(-1, -1, -1),
+		Vector3i(1, 1, 1),
 		Vector3i(1, 1, 1)
 		]
 }
