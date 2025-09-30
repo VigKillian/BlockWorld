@@ -4,6 +4,7 @@ class_name SimulationSpace
 #@export var scene_children : Array[Node3D]
 
 @export var actions: Dictionary[Action, Agent]
+@export var winning_conditions: Dictionary[Agent, Area3D]
 
 var current_step_index : int
 
@@ -50,7 +51,10 @@ func start_simulation():
 	print("action start")
 	var rootStep:= Step.new()
 	var previousStep:= rootStep
-	for a in actions.keys():
+	var it:=0
+	while it<actions.keys().size() && !check_final_state():
+		var a = actions.keys()[it]
+		
 		if not is_instance_valid(a): continue
 		a.exec(actions[a])
 		await get_tree().create_timer(1.0).timeout
@@ -68,9 +72,15 @@ func start_simulation():
 		previousStep.addSubStep(currentStep)
 		previousStep = currentStep
 		
+		
 		await get_tree().create_timer(1.0).timeout
+		it += 1
 	
 	rootStep.save()
+	if check_final_state():
+		print("Ouihi")
+	else:
+		print(":(")
 	
 func stop_simulation():
 	pass
@@ -93,4 +103,15 @@ func save_scene_as_json():
 	print("file : ", file)
 	file.store_string(json_string)
 		
-		
+
+func check_final_state() -> bool:
+	var finalState = true
+	for agent in winning_conditions.keys():
+		var bodies = winning_conditions[agent].get_overlapping_bodies()
+		var agentState = false
+		for body in bodies:
+			if body == agent:
+				agentState = true
+		finalState &= agentState
+	
+	return finalState

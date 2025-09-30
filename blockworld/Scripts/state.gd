@@ -34,7 +34,7 @@ func serialize():
 	var jsonData : Dictionary
 	
 	jsonData["action"] = action
-	jsonData["agent"] = agent
+	jsonData["agent"] = agent.name if agent != null else agent
 	jsonData["state"] = state
 	var subStepsData: Array
 	for sub in subSteps:
