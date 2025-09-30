@@ -7,9 +7,9 @@
 	"sub_steps": [
 		{
 			"action": "Rotate(degree=90, axis=0)",
-			"agent": "Cylindre:<RigidBody3D#41506833944>",
+			"agent": "Cylindre:<RigidBody3D#54291072757>",
 			"state": {
-				"Cylindre:<RigidBody3D#41506833944>": {
+				"Cylindre:<RigidBody3D#54291072757>": {
 					"data": {
 
 					},
@@ -19,9 +19,9 @@
 			"sub_steps": [
 				{
 					"action": "Translate(delta=(-3, 0, 0))",
-					"agent": "Cylindre:<RigidBody3D#41506833944>",
+					"agent": "Cylindre:<RigidBody3D#54291072757>",
 					"state": {
-						"Cylindre:<RigidBody3D#41506833944>": {
+						"Cylindre:<RigidBody3D#54291072757>": {
 							"data": {
 
 							},

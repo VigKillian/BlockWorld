@@ -5,14 +5,46 @@ class_name SimulationSpace
 
 @export var actions: Dictionary[Action, Agent]
 
+var current_step_index : int
+
 func _process(delta: float) -> void:
 	if(Input.is_action_just_pressed("ui_accept")):
 		save_scene_as_json()
 		print("Données enregistrées")
 
 func _ready() -> void:
-	start_simulation()
+	current_step_index = 0
+	step_by_step_simulation()
+	next_step()
+	step_by_step_simulation()
+	#start_simulation()
 	print(actions)
+	
+func next_step():
+	current_step_index += 1
+
+func step_by_step_simulation():
+	print("action start")
+	#var rootStep:= Step.new()
+	#var previousStep:= rootStep
+	var next_actions := actions.keys()
+	if current_step_index < len(next_actions):
+		if not is_instance_valid(next_actions[current_step_index]): return
+		next_actions[current_step_index].exec(actions[next_actions[current_step_index]])
+		print("Action ", current_step_index, " exécutée")
+		# sauvegarder scène
+		var currentStep := Step.new()
+		currentStep.agent = actions[next_actions[current_step_index]]
+		currentStep.action = next_actions[current_step_index]
+		
+		#var state: Dictionary[Agent, Dictionary]
+		#for agent in actions.values():
+			#state[agent] = {"data" : agent.data}
+			#state[agent]["transform"] = agent.global_transform 
+		#currentStep.state = state
+		#previousStep.addSubStep(currentStep)
+		#previousStep = currentStep	
+	#rootStep.save()
 
 func start_simulation():
 	print("action start")
