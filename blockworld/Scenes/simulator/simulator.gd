@@ -80,21 +80,30 @@ func print_available_actions():
 		
 		print("\n")
 
-func broad_research(depth: int):
-	var new_spaces : Array[SimulationSpace]
-	var all_actions : Dictionary[Agent, Action]
+func broad_research(s: SimulationSpace, depth: int):
+	if depth <=0:
+		return false
 	
-	#for agent in available_agents:
-		#var generated_actions := generate_all_actions(agent)
-		#for a in generated_actions:
-			#all_actions[agent] = a
-	#
-	#for action in all_actions.keys():
-		#var new_space : SimulationSpace = space.duplicate()
-		#new_space.actions.append(action)
-		#new_spaces.append(new_space)
+	#if space = finish_state 
+	
+	var new_spaces : Array[SimulationSpace]
+	var all_actions : Dictionary[Action, Agent]
+	
+	for agent in available_agents:
+		var generated_actions := generate_all_actions(agent)
+		for a in generated_actions:
+			all_actions[a] = agent
+	
+	for action in all_actions.keys():
+		var new_space : SimulationSpace = s.duplicate()
+		new_space.actions[action] = all_actions[action]
+		new_space.step_by_step_simulation()
+		new_space.next_step() # sert à rien normalement
+		new_spaces.append(new_space)
 		
 		
+	for new_space in new_spaces:
+		broad_research(new_space, depth-1)
 	
 	
 	
