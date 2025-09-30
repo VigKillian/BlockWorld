@@ -1,11 +1,13 @@
-[gd_scene load_steps=16 format=3 uid="uid://ykary12vqwi"]
+[gd_scene load_steps=22 format=3 uid="uid://ykary12vqwi"]
 
 [ext_resource type="Texture2D" uid="uid://cywcd8q4ksu5c" path="res://ressources/Texturelabs_Stone_127S.jpg" id="3_7v43y"]
 [ext_resource type="Script" uid="uid://d1cmtslgi1sa5" path="res://Scripts/camera.gd" id="5_awt2u"]
 [ext_resource type="PackedScene" uid="uid://cupx6ue1wokhx" path="res://Scenes/simulation_spaces/table_donuts/table_donuts.tscn" id="6_phf2b"]
 [ext_resource type="Material" uid="uid://blix246u66hxa" path="res://ressources/landscape.tres" id="7_xo8fn"]
 [ext_resource type="PackedScene" uid="uid://cglfy1p0ssune" path="res://ressources/landscape1.glb" id="8_bpnj1"]
+[ext_resource type="Script" uid="uid://dxppnbks1q0po" path="res://Classes/Actions/rotate.gd" id="9_awt2u"]
 [ext_resource type="PackedScene" uid="uid://bl7hkynpd8m7l" path="res://ressources/landscape2.glb" id="9_dvopj"]
+[ext_resource type="Script" uid="uid://wuge7vtcet2p" path="res://Classes/Actions/translate.gd" id="10_6mam8"]
 [ext_resource type="PackedScene" uid="uid://boe1g303g05op" path="res://Scenes/fire.tscn" id="10_awt2u"]
 [ext_resource type="PackedScene" uid="uid://dn8bii54gsif0" path="res://Scenes/Diable.tscn" id="10_dvopj"]
 
@@ -55,15 +57,36 @@ emission_energy_multiplier = 7.26
 [sub_resource type="BoxMesh" id="BoxMesh_bpnj1"]
 material = SubResource("StandardMaterial3D_xo8fn")
 
+[sub_resource type="Resource" id="Resource_l8ntn"]
+script = ExtResource("9_awt2u")
+p_degree = 90
+metadata/_custom_type_script = "uid://dxppnbks1q0po"
+
+[sub_resource type="Resource" id="Resource_3u8ac"]
+script = ExtResource("10_6mam8")
+p_delta = Vector3i(-3, 0, 0)
+metadata/_custom_type_script = "uid://wuge7vtcet2p"
+
+[sub_resource type="Resource" id="Resource_dvopj"]
+script = ExtResource("9_awt2u")
+p_degree = 90
+metadata/_custom_type_script = "uid://dxppnbks1q0po"
+
+[sub_resource type="Resource" id="Resource_awt2u"]
+script = ExtResource("10_6mam8")
+p_delta = Vector3i(-3, 0, 0)
+metadata/_custom_type_script = "uid://wuge7vtcet2p"
+
 [node name="BlockScene" type="Node3D"]
 
 [node name="CameraRig" type="Node3D" parent="."]
+transform = Transform3D(-0.8396198, 0, -0.5431745, 0, 1, 0, 0.5431745, 0, -0.8396198, 0, 0, 0)
 script = ExtResource("5_awt2u")
 
 [node name="CameraPitch" type="Node3D" parent="CameraRig"]
 
 [node name="Camera3D" type="Camera3D" parent="CameraRig/CameraPitch"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.21158075, 3.982, 3.9635825)
+transform = Transform3D(1, 0, 0, 0, 0.9645574, 0.26387304, 0, -0.26387304, 0.9645574, 0.21158075, 3.982, 3.9635825)
 fov = 50.0
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
@@ -140,7 +163,22 @@ light_volumetric_fog_energy = 0.0
 light_angular_distance = 5.94
 
 [node name="Fire" parent="environment" instance=ExtResource("10_awt2u")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.25398, 5.6740465, 0.061938643)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.31034, 5.0333185, -0.2072289)
+
+[node name="Fire2" parent="environment" instance=ExtResource("10_awt2u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.31034, 5.064241, 0.19073376)
+
+[node name="Fire3" parent="environment" instance=ExtResource("10_awt2u")]
+transform = Transform3D(-0.091727525, 0, 0.99578416, 0, 1, 0, -0.99578416, 0, -0.091727525, 4.2068014, 3.930813, 1.3726932)
+
+[node name="Fire5" parent="environment" instance=ExtResource("10_awt2u")]
+transform = Transform3D(-0.091727525, 0, 0.99578416, 0, 1, 0, -0.99578416, 0, -0.091727525, 3.8837638, 3.598097, 1.3726932)
+
+[node name="Fire6" parent="environment" instance=ExtResource("10_awt2u")]
+transform = Transform3D(-0.091727525, 0, 0.99578416, 0, 1, 0, -0.99578416, 0, -0.091727525, 3.5369763, 3.2355783, 1.3726932)
+
+[node name="Fire4" parent="environment" instance=ExtResource("10_awt2u")]
+transform = Transform3D(-0.091727525, 0, 0.99578416, 0, 1, 0, -0.99578416, 0, -0.091727525, 7.3010373, 2.4177275, 0.04001391)
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.4345284, 0)
@@ -153,7 +191,12 @@ draw_pass_1 = SubResource("BoxMesh_bpnj1")
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 5.233821, 0, -6.1319234e-08)
 
 [node name="SimulationSpace" parent="." node_paths=PackedStringArray("actions") instance=ExtResource("6_phf2b")]
-actions = {}
+actions = {
+SubResource("Resource_l8ntn"): NodePath("Cylindre"),
+SubResource("Resource_3u8ac"): NodePath("Cylindre"),
+SubResource("Resource_dvopj"): NodePath("Cylindre"),
+SubResource("Resource_awt2u"): NodePath("Cylindre")
+}
 
 [editable path="environment/landscape1"]
 [editable path="environment/landscape2"]

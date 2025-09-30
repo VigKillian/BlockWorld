@@ -38,11 +38,12 @@ func generate_all_actions(agent: Agent) -> Array[Action]:
 		#TODO check if action is compatible and possible for actor
 		
 		for parameter in model_action.ranges.keys():
-			
+			var param_values_arrays: Array[Array]
 			if model_action.get(parameter) is int:
-				generate_all_ints(model_action.ranges[parameter])
+				param_values_arrays.push_back(generate_all_ints(model_action.ranges[parameter]))
 			if model_action.get(parameter) is Vector3i:
-				generate_all_vec3i(model_action.ranges[parameter])
+				param_values_arrays.push_back(generate_all_vec3i(model_action.ranges[parameter]))
+				
 	
 	return res;
 

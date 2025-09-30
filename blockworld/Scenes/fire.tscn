@@ -3,10 +3,13 @@
 [ext_resource type="Shader" uid="uid://c0vxc81m7hqn4" path="res://ressources/effects/fire.gdshader" id="1_6cgax"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_6cgax"]
+noise_type = 3
+frequency = 0.0143
 
 [sub_resource type="NoiseTexture3D" id="NoiseTexture3D_yr3ur"]
-width = 512
-height = 254
+width = 256
+height = 128
+depth = 128
 noise = SubResource("FastNoiseLite_6cgax")
 seamless = true
 
@@ -15,25 +18,25 @@ render_priority = 0
 shader = ExtResource("1_6cgax")
 shader_parameter/raymarch_steps = 4
 shader_parameter/sample_jitter = false
-shader_parameter/potato_mode = false
+shader_parameter/potato_mode = true
 shader_parameter/sample_noise = SubResource("NoiseTexture3D_yr3ur")
 shader_parameter/billboard = false
-shader_parameter/billboard_z_offset = 0.675
+shader_parameter/billboard_z_offset = 1.825
 shader_parameter/proximity_fade_distance = 0.375
-shader_parameter/time_scale = 0.04
-shader_parameter/noise_scale = 0.45
-shader_parameter/noise_threshold = 0.52
-shader_parameter/fire_height = 2.45
-shader_parameter/fire_width = 2.25
-shader_parameter/box_center = Vector3(0, -1.335, 0)
+shader_parameter/time_scale = 0.14
+shader_parameter/noise_scale = 2.95
+shader_parameter/noise_threshold = 0.49
+shader_parameter/fire_height = 0.96
+shader_parameter/fire_width = 0.695
+shader_parameter/box_center = Vector3(0, -0.54, 0)
 shader_parameter/box_rotation = Vector3(0, 0, 0)
-shader_parameter/taper_factor = 0.425
-shader_parameter/wobble_strength = 1.0
-shader_parameter/wobble_speed = 6.0
+shader_parameter/taper_factor = 0.935
+shader_parameter/wobble_strength = 1.015
+shader_parameter/wobble_speed = 2.775
 shader_parameter/wobble_noise_frequency = 0.125
-shader_parameter/sharpness_cutoff = 8.174000388265
-shader_parameter/emission_strength = 12.5
-shader_parameter/core_glow_multiplier = 16.0
+shader_parameter/sharpness_cutoff = 6.54800031103
+shader_parameter/emission_strength = 33.105
+shader_parameter/core_glow_multiplier = 16.09600076456
 shader_parameter/color_core = Color(9.048581e-06, 0.963257, 0.86968005, 1)
 shader_parameter/color_mid = Color(0, 0.94651407, 0.67547864, 1)
 shader_parameter/color_outer = Color(6.256998e-07, 0.49599022, 0.37081268, 1)

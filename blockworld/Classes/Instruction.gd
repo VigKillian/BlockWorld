@@ -13,6 +13,22 @@ class_name Action
 @abstract
 func exec(agent: Agent)
 
+
+func _to_string() -> String:
+	var res: String = get_class().get_basename() +  "("
+	var params = get_property_list()
+	
+	var first_property := true
+	for param in params:
+		if param.name.begins_with("p_"):
+			if !first_property:
+				res += ","
+			first_property = false
+			res += params.name.trim_prefix("p_") + "=" + get(params.name) 
+	
+	res += ")"
+	return res
+
 # advanced : scripts must have a main () function and get 
 # @export var advanced := false
 """
