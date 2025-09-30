@@ -24,7 +24,7 @@ func _to_string() -> String:
 			if !first_property:
 				res += ", "
 			first_property = false
-			res += params.name.trim_prefix("p_") + "=" + get(params.name) 
+			res += param["name"].trim_prefix("p_") + "=" + str(get(param["name"]))
 	
 	res += ")"
 	return res
