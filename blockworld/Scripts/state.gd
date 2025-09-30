@@ -22,12 +22,12 @@ func equals(other: Step) -> bool:
 
 func addSubStep(step: Step):
 	subSteps.append(step)
+	step.parent = self
 
 func save(path: String = "res://data/graph.dat"):
 	var jsonData = serialize()
 	var jsonString := JSON.stringify(jsonData, "\t")
 	var file = FileAccess.open(path, FileAccess.WRITE)
-	print("file : ", file)
 	file.store_string(jsonString)
 
 func serialize():

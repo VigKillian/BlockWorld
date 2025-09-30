@@ -16,7 +16,8 @@ func _ready() -> void:
 
 func start_simulation():
 	print("action start")
-	var previousStep: Step
+	var rootStep:= Step.new()
+	var previousStep:= rootStep
 	for a in actions.keys():
 		if not is_instance_valid(a): continue
 		a.exec(actions[a])
@@ -32,13 +33,12 @@ func start_simulation():
 			state[agent] = {"data" : agent.data}
 			state[agent]["transform"] = agent.global_transform 
 		currentStep.state = state
-		if previousStep != null:
-			currentStep.parent = previousStep
+		previousStep.addSubStep(currentStep)
 		previousStep = currentStep
 		
 		await get_tree().create_timer(1.0).timeout
 	
-	previousStep.save()
+	rootStep.save()
 	
 func stop_simulation():
 	pass
