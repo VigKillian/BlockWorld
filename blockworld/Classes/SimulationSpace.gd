@@ -105,10 +105,13 @@ func save_scene_as_json():
 		
 
 func check_final_state() -> bool:
+	var finalState = true
 	for agent in winning_conditions.keys():
 		var bodies = winning_conditions[agent].get_overlapping_bodies()
+		var agentState = false
 		for body in bodies:
 			if body == agent:
-				return true	
+				agentState = true
+		finalState &= agentState
 	
-	return false
+	return finalState
