@@ -22,7 +22,7 @@ func _to_string() -> String:
 	for param in params:
 		if param.name.begins_with("p_"):
 			if !first_property:
-				res += ","
+				res += ", "
 			first_property = false
 			res += params.name.trim_prefix("p_") + "=" + get(params.name) 
 	
