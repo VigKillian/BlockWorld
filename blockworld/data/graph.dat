@@ -4,33 +4,5 @@
 	"state": {
 
 	},
-	"sub_steps": [
-		{
-			"action": "Rotate(degree=90, axis=0)",
-			"agent": "Cylindre:<RigidBody3D#41506833944>",
-			"state": {
-				"Cylindre:<RigidBody3D#41506833944>": {
-					"data": {
-
-					},
-					"transform": "[X: (1.0, 0.0, 0.0), Y: (0.0, -0.0, 1.0), Z: (0.0, -1.0, -0.0), O: (1.201, 2.67473, -1.07313)]"
-				}
-			},
-			"sub_steps": [
-				{
-					"action": "Translate(delta=(-3, 0, 0))",
-					"agent": "Cylindre:<RigidBody3D#41506833944>",
-					"state": {
-						"Cylindre:<RigidBody3D#41506833944>": {
-							"data": {
-
-							},
-							"transform": "[X: (1.0, 0.0, 0.0), Y: (0.0, -0.0, 1.0), Z: (0.0, -1.0, -0.0), O: (-0.299, 2.67473, -1.07313)]"
-						}
-					},
-					"sub_steps": []
-				}
-			]
-		}
-	]
+	"sub_steps": []
 }

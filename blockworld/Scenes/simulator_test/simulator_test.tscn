@@ -1,0 +1,30 @@
+[gd_scene load_steps=8 format=3 uid="uid://cul6sx5dgoyhj"]
+
+[ext_resource type="PackedScene" uid="uid://b6sr7hf6psl6j" path="res://Scenes/simulator/simulator.tscn" id="1_d713r"]
+[ext_resource type="Script" uid="uid://dp18og1ddsdcl" path="res://Classes/Instruction.gd" id="2_kcstg"]
+[ext_resource type="Script" uid="uid://wuge7vtcet2p" path="res://Classes/Actions/translate.gd" id="3_xevue"]
+[ext_resource type="Script" uid="uid://dxppnbks1q0po" path="res://Classes/Actions/rotate.gd" id="4_huwjm"]
+[ext_resource type="PackedScene" uid="uid://cupx6ue1wokhx" path="res://Scenes/simulation_spaces/table_donuts/table_donuts.tscn" id="5_08f5t"]
+
+[sub_resource type="Resource" id="Resource_bew2h"]
+script = ExtResource("3_xevue")
+metadata/_custom_type_script = "uid://wuge7vtcet2p"
+
+[sub_resource type="Resource" id="Resource_ow747"]
+script = ExtResource("4_huwjm")
+metadata/_custom_type_script = "uid://dxppnbks1q0po"
+
+[node name="SimulatorTest" type="Node3D"]
+
+[node name="Simulator" parent="." node_paths=PackedStringArray("space", "available_agents") instance=ExtResource("1_d713r")]
+space = NodePath("SimulationSpace")
+available_agents = [NodePath("SimulationSpace/Cylindre")]
+available_actions = Array[ExtResource("2_kcstg")]([SubResource("Resource_bew2h"), SubResource("Resource_ow747")])
+
+[node name="SimulationSpace" parent="Simulator" instance=ExtResource("5_08f5t")]
+
+[node name="Camera3D" type="Camera3D" parent="Simulator"]
+transform = Transform3D(-0.47755754, 0.38130322, -0.79154706, 1.1528978e-08, 0.90091807, 0.4339893, 0.87860054, 0.20725484, -0.43024018, -3.3508232, 3.9087415, -1.5768981)
+
+[editable path="Simulator/SimulationSpace"]
+[editable path="Simulator/SimulationSpace/donutsociss/donut_saucisse"]
