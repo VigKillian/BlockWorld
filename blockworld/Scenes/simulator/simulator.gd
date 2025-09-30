@@ -80,15 +80,20 @@ func print_available_actions():
 		
 		print("\n")
 
-func broad_research():
+func broad_research(depth: int):
 	var new_spaces : Array[SimulationSpace]
-	var all_actions : Array[Action]
+	var all_actions : Dictionary[Agent, Action]
 	
-	for agent in available_agents:
-		all_actions.append_array(generate_all_actions(agent))
-	
-	for action in all_actions:
-		new_spaces.append(space.duplicate())
+	#for agent in available_agents:
+		#var generated_actions := generate_all_actions(agent)
+		#for a in generated_actions:
+			#all_actions[agent] = a
+	#
+	#for action in all_actions.keys():
+		#var new_space : SimulationSpace = space.duplicate()
+		#new_space.actions.append(action)
+		#new_spaces.append(new_space)
+		
 		
 	
 	
