@@ -12,6 +12,9 @@ var ranges: Dictionary = {
 
 const scale_factor := 0.5
 
+func get_action_name() -> String:
+	return "LocalTranslate"
+	
 func check_ranges():
 	p_delta = p_delta.clamp(
 		ranges["p_delta"][0],

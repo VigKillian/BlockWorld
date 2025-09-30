@@ -21,7 +21,7 @@ func start_simulation():
 	for a in actions.keys():
 		if not is_instance_valid(a): continue
 		a.exec(actions[a])
-		await get_tree().create_timer(2.0).timeout
+		await get_tree().create_timer(1.0).timeout
 		print("Action exécutée")
 		# sauvegarder scène
 		var currentStep := Step.new()

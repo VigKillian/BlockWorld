@@ -7,6 +7,9 @@ var ranges: Dictionary = {
 @export var p_degree: int
 @export_enum("X", "Y", "Z") var p_axis: int
 
+func get_action_name() -> String:
+	return "Rotate"
+
 func check_ranges():
 	p_degree = clamp(p_degree, ranges["p_degree"][0], ranges["p_degree"][1])
 	p_degree = snapped(p_degree, ranges["p_degree"][2])

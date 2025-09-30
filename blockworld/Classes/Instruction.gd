@@ -13,9 +13,11 @@ class_name Action
 @abstract
 func exec(agent: Agent)
 
+@abstract
+func get_action_name() -> String
 
 func _to_string() -> String:
-	var res: String = get_class().get_basename() +  "("
+	var res: String = get_action_name() +  "("
 	var params = get_property_list()
 	
 	var first_property := true
