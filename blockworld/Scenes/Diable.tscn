@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://dn8bii54gsif0"]
+[gd_scene load_steps=8 format=3 uid="uid://dn8bii54gsif0"]
 
 [ext_resource type="ArrayMesh" uid="uid://dbos5e24jn617" path="res://ressources/diable.obj" id="1_vfyek"]
+[ext_resource type="Script" uid="uid://deg56xw3y1i0r" path="res://Scenes/diable.gd" id="2_lnycw"]
 [ext_resource type="ArrayMesh" uid="uid://c605m4xl326jt" path="res://ressources/trident.obj" id="2_s53xr"]
 [ext_resource type="ArrayMesh" uid="uid://rwmqmmtdy6y5" path="res://ressources/12683_hand_v1_FINAL.obj" id="3_s53xr"]
 
@@ -24,6 +25,7 @@ albedo_color = Color(1, 0.16078432, 0.078431375, 1)
 [node name="Body" type="MeshInstance3D"]
 material_override = SubResource("StandardMaterial3D_vfyek")
 mesh = ExtResource("1_vfyek")
+script = ExtResource("2_lnycw")
 
 [node name="Trident" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.011051402, -0.013620106, -0.9998462, 0.7765306, 0.6300796, 0, 0.6299827, -0.7764111, 0.017539691, -1.3325214, 1.7941583, 0.42876077)

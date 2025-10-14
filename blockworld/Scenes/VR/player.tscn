@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://b6bk2pj8vbj28" path="res://addons/godot-xr-tools/functions/movement_turn.tscn" id="5_es6te"]
 [ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="6_40v3l"]
 
-[node name="Player" type="XROrigin3D"]
+[node name="Player" type="XROrigin3D" groups=["player_body"]]
 world_scale = 2.0
 current = true
 
