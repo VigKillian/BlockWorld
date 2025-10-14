@@ -113,4 +113,6 @@ shape = SubResource("CylinderShape3D_phpnk")
 
 [node name="GrabPointHandLeft" parent="Cylindre" instance=ExtResource("9_3u8ac")]
 
+[connection signal="released" from="Cylindre" to="Cylindre" method="_on_released"]
+
 [editable path="donutsociss/donut_saucisse"]
