@@ -1,5 +1,5 @@
-
-extends RigidBody3D
+@tool
+extends XRToolsPickable
 class_name Agent
 
 

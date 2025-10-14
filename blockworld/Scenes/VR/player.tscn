@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://bixmx8qhoxw3g"]
+
+[ext_resource type="PackedScene" uid="uid://b4kad2kuba1yn" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_hand_low.tscn" id="1_yigg2"]
+[ext_resource type="PackedScene" uid="uid://bl2nuu3qhlb5k" path="res://addons/godot-xr-tools/functions/movement_direct.tscn" id="2_44f6n"]
+[ext_resource type="PackedScene" uid="uid://b4ysuy43poobf" path="res://addons/godot-xr-tools/functions/function_pickup.tscn" id="3_dw4bm"]
+[ext_resource type="PackedScene" uid="uid://l2n30mpbkdyw" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/right_hand_low.tscn" id="4_x37pu"]
+[ext_resource type="PackedScene" uid="uid://b6bk2pj8vbj28" path="res://addons/godot-xr-tools/functions/movement_turn.tscn" id="5_es6te"]
+[ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="6_40v3l"]
+
+[node name="Player" type="XROrigin3D"]
+world_scale = 2.0
+current = true
+
+[node name="XRCamera3D" type="XRCamera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.156684, 0)
+current = true
+
+[node name="LeftController" type="XRController3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4904359, 0.9477306, 0)
+tracker = &"left_hand"
+
+[node name="LeftHand" parent="LeftController" instance=ExtResource("1_yigg2")]
+
+[node name="MovementDirect" parent="LeftController" instance=ExtResource("2_44f6n")]
+strafe = true
+
+[node name="FunctionPickup" parent="LeftController" instance=ExtResource("3_dw4bm")]
+
+[node name="RightController" type="XRController3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6353108, 0.9477306, 0)
+tracker = &"right_hand"
+
+[node name="RightHand" parent="RightController" instance=ExtResource("4_x37pu")]
+
+[node name="MovementTurn" parent="RightController" instance=ExtResource("5_es6te")]
+
+[node name="FunctionPickup" parent="RightController" instance=ExtResource("3_dw4bm")]
+
+[node name="PlayerBody" parent="." instance=ExtResource("6_40v3l")]

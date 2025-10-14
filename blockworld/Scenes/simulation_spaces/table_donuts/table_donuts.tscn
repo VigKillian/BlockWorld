@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cupx6ue1wokhx"]
+[gd_scene load_steps=21 format=3 uid="uid://cupx6ue1wokhx"]
 
 [ext_resource type="Script" uid="uid://41snujxmb8fs" path="res://Classes/SimulationSpace.gd" id="1_0vb6x"]
 [ext_resource type="PackedScene" uid="uid://i2epcvaymddu" path="res://Scenes/Table.tscn" id="2_phpnk"]
@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://d2ym0sx32n6ih" path="res://ressources/donut_saucisse.glb" id="5_3u8ac"]
 [ext_resource type="Script" uid="uid://dc72nl88lgkdn" path="res://Classes/Agent.gd" id="6_qwo5e"]
 [ext_resource type="Texture2D" uid="uid://dd28ro1h3rfpv" path="res://ressources/tungsten.jpg" id="7_4oqv0"]
+[ext_resource type="PackedScene" uid="uid://ctw7nbntd5pcj" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_right.tscn" id="8_l8ntn"]
+[ext_resource type="PackedScene" uid="uid://c25yxb0vt53vc" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_left.tscn" id="9_3u8ac"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qe5yc"]
 albedo_color = Color(0.678431, 0.847059, 0.827451, 1)
@@ -92,6 +94,7 @@ mesh = SubResource("BoxMesh_s2wvk")
 
 [node name="Cylindre" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.201, 2.67473, -1.07313)
+collision_layer = 5
 freeze = true
 freeze_mode = 1
 script = ExtResource("6_qwo5e")
@@ -105,5 +108,9 @@ skeleton = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cylindre"]
 shape = SubResource("CylinderShape3D_phpnk")
+
+[node name="GrabPointHandRight" parent="Cylindre" instance=ExtResource("8_l8ntn")]
+
+[node name="GrabPointHandLeft" parent="Cylindre" instance=ExtResource("9_3u8ac")]
 
 [editable path="donutsociss/donut_saucisse"]
