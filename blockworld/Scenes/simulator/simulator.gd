@@ -3,7 +3,7 @@ extends Node3D
 @export var space: SimulationSpace
 
 @export var available_agents: Array[Agent] = []
-
+@export var goal : Area3D
 @export var available_actions : Array[Action] # dummy actions to copy and modify
 
 func initialize_agents(agents: Array[Agent]):
@@ -70,7 +70,6 @@ func generate_all_actions(agent: Agent) -> Array[Action]:
 	return res;
 
 func _ready() -> void:
-	print_available_actions()
 	distance_search(space,available_agents[0],0)
 
 func print_available_actions():
@@ -83,14 +82,35 @@ func print_available_actions():
 		print("\n")
 		
 func distance_search(s: SimulationSpace, target: Agent ,depth: int):
-	# code a modifier bien evidemment je fais nimp
-	#var goal : Area3D = s.winning_conditions[target as Agent] #explosion
-	
-	var pos = target.global_position
-	var maximum : Array = [] 
-	for a in available_actions:
-		print(a)
-	pass
+	# code a modifier bien evidemment je fais nimp (ça marche la)
+	while not (target in goal.get_overlapping_bodies()) && not (target.global_basis.y.angle_to(Vector3(0, 0, 1)) == 0):
+		await get_tree().create_timer(1.0).timeout
+		var pos = target.global_position
+		var min_dist : float = 10000.0
+		var min_action : Action
+		for a in generate_all_actions(target):
+			if a is ActionTranslate:
+				var test = (target.global_position + Vector3(a.p_delta)*0.5).distance_to(goal.global_position) + target.global_basis.y.angle_to(Vector3(0, 0, 1))
+				if test < min_dist:
+					min_dist = test
+					min_action = a
+			if a is ActionRotate:
+				var new_up = target.global_basis.y.rotated(
+					Vector3(
+						a.p_axis == 0,
+						a.p_axis == 1,
+						a.p_axis == 2,
+					),
+					a.p_degree)
+				var test = new_up.angle_to(Vector3(0,0,1)) + (target.global_position).distance_to(goal.global_position)
+				if test < min_dist:
+					min_dist = test
+					min_action = a
+		min_action.exec(target)
+		print("Action choisie : ", min_action)
+		
+	print("TROUVE")
+	print(target.global_basis.y.angle_to(Vector3(0, 0, 1)))
 
 func broad_research(s: SimulationSpace, depth: int):
 	if depth <=0:
