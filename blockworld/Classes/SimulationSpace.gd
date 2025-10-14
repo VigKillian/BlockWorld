@@ -12,6 +12,10 @@ func _process(delta: float) -> void:
 	if(Input.is_action_just_pressed("ui_accept")):
 		save_scene_as_json()
 		print("Données enregistrées")
+		
+	if(Input.is_action_just_pressed("step_by_step")):
+		step_by_step_simulation()
+		next_step()
 
 func _ready() -> void:
 	current_step_index = 0

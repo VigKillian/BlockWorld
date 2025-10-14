@@ -71,6 +71,8 @@ func generate_all_actions(agent: Agent) -> Array[Action]:
 
 func _ready() -> void:
 	print_available_actions()
+	distance_search(space,available_agents[0],0)
+
 func print_available_actions():
 	for a in available_agents:
 		print(a)
@@ -79,6 +81,16 @@ func print_available_actions():
 			print("  ->" + action._to_string())
 		
 		print("\n")
+		
+func distance_search(s: SimulationSpace, target: Agent ,depth: int):
+	# code a modifier bien evidemment je fais nimp
+	#var goal : Area3D = s.winning_conditions[target as Agent] #explosion
+	
+	var pos = target.global_position
+	var maximum : Array = [] 
+	for a in available_actions:
+		print(a)
+	pass
 
 func broad_research(s: SimulationSpace, depth: int):
 	if depth <=0:

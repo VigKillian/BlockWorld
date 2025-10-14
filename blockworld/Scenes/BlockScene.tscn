@@ -1,7 +1,7 @@
 [gd_scene load_steps=22 format=3 uid="uid://ykary12vqwi"]
 
 [ext_resource type="Texture2D" uid="uid://cywcd8q4ksu5c" path="res://ressources/Texturelabs_Stone_127S.jpg" id="3_7v43y"]
-[ext_resource type="Script" path="res://Scripts/camera.gd" id="5_awt2u"]
+[ext_resource type="Script" uid="uid://d1cmtslgi1sa5" path="res://Scripts/camera.gd" id="5_awt2u"]
 [ext_resource type="PackedScene" uid="uid://cupx6ue1wokhx" path="res://Scenes/simulation_spaces/table_donuts/table_donuts.tscn" id="6_phf2b"]
 [ext_resource type="Material" uid="uid://blix246u66hxa" path="res://ressources/landscape.tres" id="7_xo8fn"]
 [ext_resource type="PackedScene" uid="uid://cglfy1p0ssune" path="res://ressources/landscape1.glb" id="8_bpnj1"]
@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bl7hkynpd8m7l" path="res://ressources/landscape2.glb" id="9_dvopj"]
 [ext_resource type="Script" uid="uid://wuge7vtcet2p" path="res://Classes/Actions/translate.gd" id="10_6mam8"]
 [ext_resource type="PackedScene" uid="uid://boe1g303g05op" path="res://Scenes/fire.tscn" id="10_awt2u"]
-[ext_resource type="PackedScene" path="res://Scenes/Diable.tscn" id="10_dvopj"]
+[ext_resource type="PackedScene" uid="uid://dn8bii54gsif0" path="res://Scenes/Diable.tscn" id="10_dvopj"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_awt2u"]
 albedo_texture = ExtResource("3_7v43y")
@@ -198,7 +198,7 @@ SubResource("Resource_dvopj"): NodePath("Cylindre"),
 SubResource("Resource_awt2u"): NodePath("Cylindre")
 }
 winning_conditions = {
-NodePath("Cylindre"): NodePath("donutsociss/Interior")
+NodePath("Cylindre"): null
 }
 
 [editable path="environment/landscape1"]
