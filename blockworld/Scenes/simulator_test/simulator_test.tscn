@@ -1,10 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://cul6sx5dgoyhj"]
+[gd_scene load_steps=15 format=3 uid="uid://cul6sx5dgoyhj"]
 
 [ext_resource type="PackedScene" uid="uid://b6sr7hf6psl6j" path="res://Scenes/simulator/simulator.tscn" id="1_d713r"]
 [ext_resource type="Script" uid="uid://dp18og1ddsdcl" path="res://Classes/Instruction.gd" id="2_kcstg"]
 [ext_resource type="Script" uid="uid://wuge7vtcet2p" path="res://Classes/Actions/translate.gd" id="3_xevue"]
 [ext_resource type="Script" uid="uid://dxppnbks1q0po" path="res://Classes/Actions/rotate.gd" id="4_huwjm"]
 [ext_resource type="PackedScene" uid="uid://cupx6ue1wokhx" path="res://Scenes/simulation_spaces/table_donuts/table_donuts.tscn" id="5_08f5t"]
+[ext_resource type="PackedScene" uid="uid://cglfy1p0ssune" path="res://ressources/landscape1.glb" id="6_08f5t"]
+[ext_resource type="Material" uid="uid://blix246u66hxa" path="res://ressources/landscape.tres" id="7_bew2h"]
+[ext_resource type="PackedScene" uid="uid://bl7hkynpd8m7l" path="res://ressources/landscape2.glb" id="8_ow747"]
+[ext_resource type="PackedScene" uid="uid://boe1g303g05op" path="res://Scenes/fire.tscn" id="9_xt7hl"]
 
 [sub_resource type="Resource" id="Resource_bew2h"]
 script = ExtResource("3_xevue")
@@ -14,17 +18,139 @@ metadata/_custom_type_script = "uid://wuge7vtcet2p"
 script = ExtResource("4_huwjm")
 metadata/_custom_type_script = "uid://dxppnbks1q0po"
 
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_d6md7"]
+sky_top_color = Color(0.843101, 0, 0.115244, 1)
+sky_horizon_color = Color(0.768953, 0.631863, 0.403337, 1)
+
+[sub_resource type="Sky" id="Sky_bpnj1"]
+sky_material = SubResource("ProceduralSkyMaterial_d6md7")
+
+[sub_resource type="Environment" id="Environment_qa5dl"]
+background_mode = 2
+sky = SubResource("Sky_bpnj1")
+tonemap_mode = 2
+glow_enabled = true
+fog_enabled = true
+fog_light_color = Color(0.207914, 0.15194, 0.0508177, 1)
+fog_sun_scatter = 0.09
+fog_density = 0.002
+fog_sky_affect = 0.147
+adjustment_enabled = true
+adjustment_brightness = 0.8
+adjustment_contrast = 1.2
+
 [node name="SimulatorTest" type="Node3D"]
 
-[node name="Simulator" parent="." node_paths=PackedStringArray("space", "available_agents") instance=ExtResource("1_d713r")]
+[node name="Simulator" parent="." node_paths=PackedStringArray("space", "available_agents", "goal") instance=ExtResource("1_d713r")]
 space = NodePath("SimulationSpace")
 available_agents = [NodePath("SimulationSpace/Cylindre")]
+goal = NodePath("SimulationSpace/donutsociss/Area3D")
 available_actions = Array[ExtResource("2_kcstg")]([SubResource("Resource_bew2h"), SubResource("Resource_ow747")])
 
 [node name="SimulationSpace" parent="Simulator" instance=ExtResource("5_08f5t")]
 
+[node name="donutsociss" parent="Simulator/SimulationSpace" index="0"]
+transform = Transform3D(1.9106857e-15, -4.371139e-08, 1, -1, -4.371139e-08, 1.8428085e-22, 4.371139e-08, -1, -4.371139e-08, -0.5, 2.5, 1)
+
+[node name="Cylindre" parent="Simulator/SimulationSpace" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 2.5, -1)
+
 [node name="Camera3D" type="Camera3D" parent="Simulator"]
 transform = Transform3D(-0.47755754, 0.38130322, -0.79154706, 1.1528978e-08, 0.90091807, 0.4339893, 0.87860054, 0.20725484, -0.43024018, -3.3508232, 3.9087415, -1.5768981)
 
+[node name="environment" type="Node3D" parent="."]
+
+[node name="landscape1" parent="environment" instance=ExtResource("6_08f5t")]
+transform = Transform3D(552.045, 0, -235.046, 0, 600, 0, 235.046, 0, 552.045, -635.287, -17.0618, -584.527)
+
+[node name="Landscape" parent="environment/landscape1" index="0"]
+material_override = ExtResource("7_bew2h")
+
+[node name="landscape2" parent="environment" instance=ExtResource("8_ow747")]
+transform = Transform3D(600, 0, 0, 0, 600, 0, 0, 0, 600, 922.299, -0.77533, 579.037)
+
+[node name="Landscape_001" parent="environment/landscape2" index="0"]
+material_override = ExtResource("7_bew2h")
+
+[node name="landscape3" parent="environment" instance=ExtResource("6_08f5t")]
+transform = Transform3D(153.672, 0, 579.987, 0, 600, 0, -579.987, 0, 153.672, 904.841, -17.0618, -607.193)
+
+[node name="Landscape" parent="environment/landscape3" index="0"]
+material_override = ExtResource("7_bew2h")
+
+[node name="landscape4" parent="environment" instance=ExtResource("8_ow747")]
+transform = Transform3D(477.443, 0, -363.385, 0, 600, 0, 363.385, 0, 477.443, -617.83, -0.77533, 601.703)
+
+[node name="Landscape_001" parent="environment/landscape4" index="0"]
+material_override = ExtResource("7_bew2h")
+
+[node name="landscape5" parent="environment" instance=ExtResource("6_08f5t")]
+transform = Transform3D(-396.206, 0, -450.579, 0, 600, 0, 450.579, 0, -396.206, 174.366, -17.0618, 968.871)
+
+[node name="Landscape" parent="environment/landscape5" index="0"]
+material_override = ExtResource("7_bew2h")
+
+[node name="landscape6" parent="environment" instance=ExtResource("8_ow747")]
+transform = Transform3D(-374.164, 0, 469.043, 0, 600, 0, -469.043, 0, -374.164, 112.646, -0.77533, -974.36)
+
+[node name="Landscape_001" parent="environment/landscape6" index="0"]
+material_override = ExtResource("7_bew2h")
+
+[node name="landscape7" parent="environment" instance=ExtResource("6_08f5t")]
+transform = Transform3D(-549.229, 0, -241.552, 0, 600, 0, 241.552, 0, -549.229, -803.788, -17.0618, -220.972)
+
+[node name="Landscape" parent="environment/landscape7" index="0"]
+material_override = ExtResource("7_bew2h")
+
+[node name="landscape8" parent="environment" instance=ExtResource("8_ow747")]
+transform = Transform3D(506.327, 0, 321.921, 0, 600, 0, -321.921, 0, 506.327, 1090.8, -0.77533, 215.482)
+
+[node name="Landscape_001" parent="environment/landscape8" index="0"]
+material_override = ExtResource("7_bew2h")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="environment"]
+environment = SubResource("Environment_qa5dl")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="environment/WorldEnvironment"]
+transform = Transform3D(-0.43926802, -0.55648655, -0.7052421, -0.84140307, -0.020216713, 0.5400299, -0.31477702, 0.83061063, -0.45934892, 0, 0, 0)
+light_color = Color(1, 0.695712, 0.313161, 1)
+light_angular_distance = 9.34
+shadow_enabled = true
+shadow_bias = 0.01
+shadow_blur = 0.3
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="environment/WorldEnvironment"]
+transform = Transform3D(-0.43926802, -0.55648655, -0.7052421, -0.84140307, -0.020216713, 0.5400299, -0.31477702, 0.83061063, -0.45934892, 0, 0, 0)
+light_color = Color(0, 0, 0, 1)
+light_energy = 0.855
+light_volumetric_fog_energy = 0.0
+light_angular_distance = 5.94
+
+[node name="Fire" parent="environment" instance=ExtResource("9_xt7hl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.31034, 5.0333185, -0.2072289)
+
+[node name="Fire2" parent="environment" instance=ExtResource("9_xt7hl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.31034, 5.064241, 0.19073376)
+
+[node name="Fire3" parent="environment" instance=ExtResource("9_xt7hl")]
+transform = Transform3D(-0.091727525, 0, 0.99578416, 0, 1, 0, -0.99578416, 0, -0.091727525, 4.2068014, 3.930813, 1.3726932)
+
+[node name="Fire5" parent="environment" instance=ExtResource("9_xt7hl")]
+transform = Transform3D(-0.091727525, 0, 0.99578416, 0, 1, 0, -0.99578416, 0, -0.091727525, 3.8837638, 3.598097, 1.3726932)
+
+[node name="Fire6" parent="environment" instance=ExtResource("9_xt7hl")]
+transform = Transform3D(-0.091727525, 0, 0.99578416, 0, 1, 0, -0.99578416, 0, -0.091727525, 3.5369763, 3.2355783, 1.3726932)
+
+[node name="Fire4" parent="environment" instance=ExtResource("9_xt7hl")]
+transform = Transform3D(-0.091727525, 0, 0.99578416, 0, 1, 0, -0.99578416, 0, -0.091727525, 7.3010373, 2.4177275, 0.04001391)
+
 [editable path="Simulator/SimulationSpace"]
 [editable path="Simulator/SimulationSpace/donutsociss/donut_saucisse"]
+[editable path="environment/landscape1"]
+[editable path="environment/landscape2"]
+[editable path="environment/landscape3"]
+[editable path="environment/landscape4"]
+[editable path="environment/landscape5"]
+[editable path="environment/landscape6"]
+[editable path="environment/landscape7"]
+[editable path="environment/landscape8"]
