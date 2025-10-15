@@ -15,9 +15,10 @@ func _process(delta: float) -> void:
 
 func _ready() -> void:
 	current_step_index = 0
-	step_by_step_simulation()
-	next_step()
-	step_by_step_simulation()
+	#step_by_step_simulation()
+	#next_step()
+	#step_by_step_simulation()
+	#var sim := Simulator
 	#start_simulation()
 	print(actions)
 	
@@ -89,7 +90,7 @@ func save_scene_as_json():
 	var json_dico : Array[Dictionary]
 	
 	for o in get_tree().get_nodes_in_group("scene_objects"):
-		print(o)
+		#print(o)
 		#var color : Color = o.mesh.material.albedo_color
 		var pos : String = str(o.position)
 		var rota : String = str(o.rotation)
@@ -98,9 +99,9 @@ func save_scene_as_json():
 		json_dico.append({"position" : pos, "rotation" : rota, "scale" : scl})
 		
 	var json_string := JSON.stringify(json_dico, "\t")
-	print(str(global_transform))
+	#print(str(global_transform))
 	var file = FileAccess.open("res://data/save_objects.dat", FileAccess.WRITE)
-	print("file : ", file)
+	#print("file : ", file)
 	file.store_string(json_string)
 		
 

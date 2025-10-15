@@ -79,14 +79,34 @@ func print_available_actions():
 			print("  ->" + action._to_string())
 		
 		print("\n")
-
-func broad_research(s: SimulationSpace, depth: int):
+		
+func broad_research_rec(s:SimulationSpace, depth: int, all_actions : Dictionary[Action, Agent]):
+	
 	if depth <=0:
 		return false
 	
-	#if space = finish_state 
-	
 	var new_spaces : Array[SimulationSpace]
+	
+	for action in all_actions.keys():
+		var new_space : SimulationSpace = s.duplicate()
+		new_space.actions[action] = all_actions[action]
+		new_space.step_by_step_simulation()
+		if new_space.check_final_state():
+			return true
+		new_space.next_step() # sert à rien normalement
+		new_spaces.append(new_space)
+	
+	var final_state_found: bool = false
+	
+	for new_space in new_spaces:
+		final_state_found = final_state_found || broad_research_rec(new_space, depth-1, all_actions)
+		
+	s.save_scene_as_json()
+	
+	return final_state_found
+
+func broad_research(s: SimulationSpace, depth: int):
+	
 	var all_actions : Dictionary[Action, Agent]
 	
 	for agent in available_agents:
@@ -94,16 +114,8 @@ func broad_research(s: SimulationSpace, depth: int):
 		for a in generated_actions:
 			all_actions[a] = agent
 	
-	for action in all_actions.keys():
-		var new_space : SimulationSpace = s.duplicate()
-		new_space.actions[action] = all_actions[action]
-		new_space.step_by_step_simulation()
-		new_space.next_step() # sert à rien normalement
-		new_spaces.append(new_space)
+	var found_state : bool = broad_research_rec(s, depth, all_actions)
+	if found_state:
+		pass
+		#backtrack
 		
-		
-	for new_space in new_spaces:
-		broad_research(new_space, depth-1)
-	
-	
-	
