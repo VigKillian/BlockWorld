@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cul6sx5dgoyhj"]
+[gd_scene load_steps=17 format=3 uid="uid://cul6sx5dgoyhj"]
 
 [ext_resource type="PackedScene" uid="uid://b6sr7hf6psl6j" path="res://Scenes/simulator/simulator.tscn" id="1_d713r"]
 [ext_resource type="Script" uid="uid://dp18og1ddsdcl" path="res://Classes/Instruction.gd" id="2_kcstg"]
@@ -17,6 +17,16 @@ metadata/_custom_type_script = "uid://wuge7vtcet2p"
 [sub_resource type="Resource" id="Resource_ow747"]
 script = ExtResource("4_huwjm")
 metadata/_custom_type_script = "uid://dxppnbks1q0po"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a00ad"]
+emission_enabled = true
+emission = Color(0.6995611, 0.3322063, 0, 1)
+emission_energy_multiplier = 16.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_08f5t"]
+material = SubResource("StandardMaterial3D_a00ad")
+radius = 0.1
+height = 0.2
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_d6md7"]
 sky_top_color = Color(0.843101, 0, 0.115244, 1)
@@ -57,6 +67,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 2.5, -1)
 
 [node name="Camera3D" type="Camera3D" parent="Simulator"]
 transform = Transform3D(-0.47755754, 0.38130322, -0.79154706, 1.1528978e-08, 0.90091807, 0.4339893, 0.87860054, 0.20725484, -0.43024018, -3.3508232, 3.9087415, -1.5768981)
+
+[node name="winParticle" type="CPUParticles3D" parent="Simulator"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5095408, 3.2718735, 0.8189549)
+emitting = false
+amount = 500
+mesh = SubResource("SphereMesh_08f5t")
+direction = Vector3(0, 1, 0)
+spread = 16.5
+initial_velocity_min = 1.0
+initial_velocity_max = 8.0
+scale_amount_min = 0.1
+scale_amount_max = 0.5
 
 [node name="environment" type="Node3D" parent="."]
 

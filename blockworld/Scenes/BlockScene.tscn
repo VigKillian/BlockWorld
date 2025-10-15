@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://ykary12vqwi"]
+[gd_scene load_steps=26 format=3 uid="uid://ykary12vqwi"]
 
 [ext_resource type="Texture2D" uid="uid://cywcd8q4ksu5c" path="res://ressources/Texturelabs_Stone_127S.jpg" id="3_7v43y"]
 [ext_resource type="Script" uid="uid://d1cmtslgi1sa5" path="res://Scripts/camera.gd" id="5_awt2u"]
@@ -8,9 +8,11 @@
 [ext_resource type="Script" uid="uid://dxppnbks1q0po" path="res://Classes/Actions/rotate.gd" id="9_awt2u"]
 [ext_resource type="PackedScene" uid="uid://bl7hkynpd8m7l" path="res://ressources/landscape2.glb" id="9_dvopj"]
 [ext_resource type="Script" uid="uid://wuge7vtcet2p" path="res://Classes/Actions/translate.gd" id="10_6mam8"]
+[ext_resource type="PackedScene" uid="uid://b6sr7hf6psl6j" path="res://Scenes/simulator/simulator.tscn" id="10_a00ad"]
 [ext_resource type="PackedScene" uid="uid://boe1g303g05op" path="res://Scenes/fire.tscn" id="10_awt2u"]
 [ext_resource type="PackedScene" uid="uid://dn8bii54gsif0" path="res://Scenes/Diable.tscn" id="10_dvopj"]
 [ext_resource type="PackedScene" uid="uid://clc5dre31iskm" path="res://addons/godot-xr-tools/xr/start_xr.tscn" id="11_6mam8"]
+[ext_resource type="Script" uid="uid://dp18og1ddsdcl" path="res://Classes/Instruction.gd" id="11_w566b"]
 [ext_resource type="PackedScene" uid="uid://bixmx8qhoxw3g" path="res://Scenes/VR/player.tscn" id="12_eqgsr"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_awt2u"]
@@ -59,25 +61,23 @@ emission_energy_multiplier = 7.26
 [sub_resource type="BoxMesh" id="BoxMesh_bpnj1"]
 material = SubResource("StandardMaterial3D_xo8fn")
 
-[sub_resource type="Resource" id="Resource_l8ntn"]
-script = ExtResource("9_awt2u")
-p_degree = 90
-metadata/_custom_type_script = "uid://dxppnbks1q0po"
-
-[sub_resource type="Resource" id="Resource_3u8ac"]
+[sub_resource type="Resource" id="Resource_bew2h"]
 script = ExtResource("10_6mam8")
-p_delta = Vector3i(-3, 0, 0)
 metadata/_custom_type_script = "uid://wuge7vtcet2p"
 
-[sub_resource type="Resource" id="Resource_dvopj"]
+[sub_resource type="Resource" id="Resource_ow747"]
 script = ExtResource("9_awt2u")
-p_degree = 90
 metadata/_custom_type_script = "uid://dxppnbks1q0po"
 
-[sub_resource type="Resource" id="Resource_awt2u"]
-script = ExtResource("10_6mam8")
-p_delta = Vector3i(-3, 0, 0)
-metadata/_custom_type_script = "uid://wuge7vtcet2p"
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a00ad"]
+emission_enabled = true
+emission = Color(0.6995611, 0.3322063, 0, 1)
+emission_energy_multiplier = 16.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_w566b"]
+material = SubResource("StandardMaterial3D_a00ad")
+radius = 0.1
+height = 0.2
 
 [node name="BlockScene" type="Node3D"]
 
@@ -193,21 +193,42 @@ draw_pass_1 = SubResource("BoxMesh_bpnj1")
 [node name="Diable" parent="." instance=ExtResource("10_dvopj")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 5.233821, 0, -6.1319234e-08)
 
-[node name="SimulationSpace" parent="." node_paths=PackedStringArray("actions", "winning_conditions") instance=ExtResource("6_phf2b")]
-actions = {
-SubResource("Resource_l8ntn"): NodePath("Cylindre"),
-SubResource("Resource_3u8ac"): NodePath("Cylindre"),
-SubResource("Resource_dvopj"): NodePath("Cylindre"),
-SubResource("Resource_awt2u"): NodePath("Cylindre")
-}
-winning_conditions = {
-NodePath("Cylindre"): null
-}
-
 [node name="StartXR" parent="." instance=ExtResource("11_6mam8")]
 
 [node name="Player" parent="." instance=ExtResource("12_eqgsr")]
 transform = Transform3D(0.14067665, 0, -0.9900556, 0, 1, 0, 0.9900556, 0, 0.14067665, -6.637166, 2.2227156, 0)
+
+[node name="Simulator" parent="." node_paths=PackedStringArray("space", "available_agents", "goal") instance=ExtResource("10_a00ad")]
+space = NodePath("SimulationSpace")
+available_agents = [NodePath("SimulationSpace/Cylindre")]
+goal = NodePath("SimulationSpace/donutsociss/Area3D")
+available_actions = Array[ExtResource("11_w566b")]([SubResource("Resource_bew2h"), SubResource("Resource_ow747")])
+
+[node name="winParticle" type="CPUParticles3D" parent="Simulator"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5095408, 3.2718735, 0.8189549)
+emitting = false
+amount = 500
+mesh = SubResource("SphereMesh_w566b")
+direction = Vector3(0, 1, 0)
+spread = 16.5
+initial_velocity_min = 1.0
+initial_velocity_max = 8.0
+scale_amount_min = 0.1
+scale_amount_max = 0.5
+
+[node name="SimulationSpace" parent="Simulator" instance=ExtResource("6_phf2b")]
+
+[node name="donutsociss" parent="Simulator/SimulationSpace" index="0"]
+transform = Transform3D(1.9106857e-15, -4.371139e-08, 1, -1, -4.371139e-08, 1.8428085e-22, 4.371139e-08, -1, -4.371139e-08, -0.5, 2.5, 1)
+
+[node name="Cylindre" parent="Simulator/SimulationSpace" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 2.5, -1)
+
+[node name="Camera3D" type="Camera3D" parent="Simulator"]
+transform = Transform3D(-0.47755754, 0.38130322, -0.79154706, 1.1528978e-08, 0.90091807, 0.4339893, 0.87860054, 0.20725484, -0.43024018, -3.3508232, 3.9087415, -1.5768981)
+
+[connection signal="picked_up" from="Simulator/SimulationSpace/Cylindre" to="Simulator" method="_on_cylindre_picked_up"]
+[connection signal="released" from="Simulator/SimulationSpace/Cylindre" to="Simulator" method="_on_cylindre_released"]
 
 [editable path="environment/landscape1"]
 [editable path="environment/landscape2"]
@@ -217,5 +238,5 @@ transform = Transform3D(0.14067665, 0, -0.9900556, 0, 1, 0, 0.9900556, 0, 0.1406
 [editable path="environment/landscape6"]
 [editable path="environment/landscape7"]
 [editable path="environment/landscape8"]
-[editable path="SimulationSpace"]
-[editable path="SimulationSpace/donutsociss/donut_saucisse"]
+[editable path="Simulator/SimulationSpace"]
+[editable path="Simulator/SimulationSpace/donutsociss/donut_saucisse"]

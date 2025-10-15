@@ -5,6 +5,11 @@ extends Node3D
 @export var available_agents: Array[Agent] = []
 @export var goal : Area3D
 @export var available_actions : Array[Action] # dummy actions to copy and modify
+@export var is_simulating: bool:
+	set(v):
+		is_simulating = v
+		if is_simulating:
+			runSim()
 
 func initialize_agents(agents: Array[Agent]):
 	available_agents = agents
@@ -69,8 +74,27 @@ func generate_all_actions(agent: Agent) -> Array[Action]:
 	
 	return res;
 
-func _ready() -> void:
-	distance_search(space,available_agents[0],0)
+func startsim():
+	is_simulating = true
+func stopsim():
+	is_simulating = false
+
+func runSim() -> void:
+	
+	while is_simulating:
+		await get_tree().create_timer(1.0).timeout
+		if not is_simulating: return;
+		if (available_agents[0] in goal.get_overlapping_bodies()) && not (available_agents[0].global_basis.y.angle_to(Vector3(0, 0, 1)) == 0):
+			win()
+		else:
+			notwin()
+			distance_search(space,available_agents[0],0)
+
+func win():
+	$winParticle.emitting = true
+
+func notwin():
+	$winParticle.emitting = false
 
 func print_available_actions():
 	for a in available_agents:
@@ -83,34 +107,28 @@ func print_available_actions():
 		
 func distance_search(s: SimulationSpace, target: Agent ,depth: int):
 	# code a modifier bien evidemment je fais nimp (ça marche la)
-	while not (target in goal.get_overlapping_bodies()) && not (target.global_basis.y.angle_to(Vector3(0, 0, 1)) == 0):
-		await get_tree().create_timer(1.0).timeout
-		var pos = target.global_position
-		var min_dist : float = 10000.0
-		var min_action : Action
-		for a in generate_all_actions(target):
-			if a is ActionTranslate:
-				var test = (target.global_position + Vector3(a.p_delta)*0.5).distance_to(goal.global_position) + target.global_basis.y.angle_to(Vector3(0, 0, 1))
-				if test < min_dist:
-					min_dist = test
-					min_action = a
-			if a is ActionRotate:
-				var new_up = target.global_basis.y.rotated(
-					Vector3(
-						a.p_axis == 0,
-						a.p_axis == 1,
-						a.p_axis == 2,
-					),
-					a.p_degree)
-				var test = new_up.angle_to(Vector3(0,0,1)) + (target.global_position).distance_to(goal.global_position)
-				if test < min_dist:
-					min_dist = test
-					min_action = a
-		min_action.exec(target)
-		print("Action choisie : ", min_action)
-		
-	print("TROUVE")
-	print(target.global_basis.y.angle_to(Vector3(0, 0, 1)))
+	var pos = target.global_position
+	var min_dist : float = 10000.0
+	var min_action : Action
+	for a in generate_all_actions(target):
+		if a is ActionTranslate:
+			var test = (target.global_position + Vector3(a.p_delta)*0.5).distance_to(goal.global_position) + target.global_basis.y.angle_to(Vector3(0, 0, 1))
+			if test < min_dist:
+				min_dist = test
+				min_action = a
+		if a is ActionRotate:
+			var new_up = target.global_basis.y.rotated(
+				Vector3(
+					a.p_axis == 0,
+					a.p_axis == 1,
+					a.p_axis == 2,
+				),
+				a.p_degree)
+			var test = new_up.angle_to(Vector3(0,0,1)) + (target.global_position).distance_to(goal.global_position)
+			if test < min_dist:
+				min_dist = test
+				min_action = a
+	min_action.exec(target)
 
 func broad_research(s: SimulationSpace, depth: int):
 	if depth <=0:
@@ -139,3 +157,13 @@ func broad_research(s: SimulationSpace, depth: int):
 	
 	
 	
+
+
+func _on_cylindre_released(pickable: Variant, by: Variant) -> void:
+	startsim()
+	
+
+
+
+func _on_cylindre_picked_up(pickable: Variant) -> void:
+	stopsim()
